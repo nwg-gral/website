@@ -1,0 +1,26 @@
+diff --git a/dist/fetchData/mapping/field-mdx.js b/dist/fetchData/mapping/field-mdx.js
+index 92b5b0131d56e957ea8bba2cdbc79bed10cb2415..84796b9461967f28d0304517a019bc5d914b4522 100644
+--- a/dist/fetchData/mapping/field-mdx.js
++++ b/dist/fetchData/mapping/field-mdx.js
+@@ -3,7 +3,7 @@ import * as utils from '@contentlayer/utils';
+ import { T } from '@contentlayer/utils/effect';
+ import { getFromDocumentContext } from '../DocumentContext.js';
+ export const makeMdxField = ({ mdxString, fieldDef, options, contentDirPath, }) => T.gen(function* ($) {
+-    const isBodyField = fieldDef.name === options.fieldOptions.bodyFieldName;
++    const isBodyField = fieldDef.name === options.fieldOptions.bodyFieldName && fieldDef.isSystemField;
+     const rawDocumentData = yield* $(getFromDocumentContext('rawDocumentData'));
+     // NOTE for the body field, we're passing the entire document file contents to MDX (e.g. in case some remark/rehype plugins need access to the frontmatter)
+     // TODO we should come up with a better way to do this
+diff --git a/src/fetchData/mapping/field-mdx.ts b/src/fetchData/mapping/field-mdx.ts
+index 7d1546b031f37ec32a55960944ce48edf21b61b7..cfd37ea0afc14f0a59f2bd26c783f43af7b77d4a 100644
+--- a/src/fetchData/mapping/field-mdx.ts
++++ b/src/fetchData/mapping/field-mdx.ts
+@@ -19,7 +19,7 @@ export const makeMdxField = ({
+   contentDirPath: AbsolutePosixFilePath
+ }): T.Effect<HasDocumentContext & OT.HasTracer, core.UnexpectedMDXError, core.MDX> =>
+   T.gen(function* ($) {
+-    const isBodyField = fieldDef.name === options.fieldOptions.bodyFieldName
++    const isBodyField = fieldDef.name === options.fieldOptions.bodyFieldName && fieldDef.isSystemField
+     const rawDocumentData = yield* $(getFromDocumentContext('rawDocumentData'))
+     // NOTE for the body field, we're passing the entire document file contents to MDX (e.g. in case some remark/rehype plugins need access to the frontmatter)
+     // TODO we should come up with a better way to do this

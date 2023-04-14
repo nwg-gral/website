@@ -1,0 +1,72 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+:root {
+	text-wrap: balance;
+	overflow-wrap: break-word;
+	tab-size: 4;
+	font-synthesis: none;
+	text-size-adjust: 100%;
+	text-rendering: optimizeLegibility;
+	-webkit-tap-highlight-color: transparent;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+:root,
+body {
+	block-size: 100%;
+}
+
+blockquote,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	text-wrap: balance;
+}
+
+/*
+ * Work around for browser incompatibilities when floating `::first-letter` pseudo-element.
+ * TODO: May need to revisit in the future:
+ *       @see https://bugzilla.mozilla.org/show_bug.cgi?id=290125
+   TODO: Change to `initial-letter: 2` once Firefox lands support.
+ */
+
+p::first-letter {
+	margin-top: -0.2em;
+	margin-bottom: -0.2em;
+}
+
+@-moz-document url-prefix() {
+	p::first-letter {
+		margin-top: -0.05em;
+		margin-bottom: 0;
+	}
+}
+
+@media (min-width: 40rem) {
+	@-moz-document url-prefix() {
+		p::first-letter {
+			margin-top: 0;
+		}
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		transition-duration: 0.01ms !important;
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		scroll-behavior: auto !important;
+	}
+}

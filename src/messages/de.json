@@ -1,0 +1,79 @@
+{
+	"ActivitiesPage": {
+		"meta": {
+			"title": "Aktivitäten"
+		},
+		"read-more": "Weiterlesen"
+	},
+	"ContactPage": {
+		"meta": {
+			"title": "Kontakt"
+		},
+		"subject": "Ihr Anliegen",
+		"email": "Ihre E-Mail-Adresse",
+		"message": "Text",
+		"submit": "Absenden"
+	},
+	"EmailLink": {
+		"email": "Email von {name}"
+	},
+	"FeaturedContent": {
+		"empty": "Nichts aktuelles"
+	},
+	"IndexPage": {
+		"meta": {
+			"title": "Startseite"
+		}
+	},
+	"LocaleSwitcher": {
+		"switch-locale": "Zu {locale, select, de {Deutsch} en {Englisch} other {Unbekannt}} wechseln"
+	},
+	"NetworksPage": {
+		"meta": {
+			"title": "Netzwerke"
+		}
+	},
+	"NotFoundPage": {
+		"meta": {
+			"title": "Seite nicht gefunden"
+		},
+		"page-not-found": "Seite nicht gefunden"
+	},
+	"PageHeader": {
+		"links": {
+			"home": "Startseite",
+			"team": "Team",
+			"research": "Forschung",
+			"networks": "Netzwerke",
+			"activities": "Aktivitäten",
+			"contact": "Kontakt"
+		}
+	},
+	"ResearchPage": {
+		"meta": {
+			"title": "Forschung"
+		}
+	},
+	"RootLayout": {
+		"meta": {
+			"title": "GraL",
+			"description": "Nachwuchsgruppe Gelingensbedingungen rassismussensibler Lehrer:innenbildung"
+		},
+		"skip-to-main-content": "Zum Hauptinhalt springen"
+	},
+	"SuccessPage": {
+		"meta": {
+			"title": "Danke"
+		},
+		"thanks-for-your-message": "Danke für Ihre Nachricht",
+		"go-back-to-home-page": "Zurück zur Startseite"
+	},
+	"TeamPage": {
+		"meta": {
+			"title": "Team"
+		}
+	},
+	"WebsiteLink": {
+		"website": "Website von {name}"
+	}
+}

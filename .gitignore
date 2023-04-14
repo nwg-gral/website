@@ -1,0 +1,30 @@
+# dependencies
+node_modules/
+.pnpm-store/
+
+# next.js
+/.next/
+/next-env.d.ts
+/out/
+
+# logs
+*.log
+
+# non-public environment variables
+.env
+.env.local
+.env.*.local
+
+# caches
+.eslintcache
+.stylelintcache
+*.tsbuildinfo
+
+# vercel
+.vercel
+
+# misc
+.DS_Store
+
+# content
+.contentlayer/

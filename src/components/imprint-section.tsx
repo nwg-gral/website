@@ -1,0 +1,25 @@
+import { allImprintPages } from "contentlayer/generated";
+import { getMDXComponent } from "next-contentlayer/hooks";
+import { useLocale } from "next-intl";
+
+import { SectionTitle } from "@/components/section-title";
+import { getPage } from "@/lib/content";
+import { type Locale } from "~/config/i18n.config";
+
+export function ImprintSection(): JSX.Element {
+	const locale = useLocale() as Locale;
+
+	const page = getPage(allImprintPages, locale);
+
+	const title = page.title;
+	const Content = getMDXComponent(page.body?.code ?? "");
+
+	return (
+		<section className="grid gap-4">
+			<SectionTitle>{title}</SectionTitle>
+			<div>
+				<Content />
+			</div>
+		</section>
+	);
+}
