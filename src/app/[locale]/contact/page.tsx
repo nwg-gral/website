@@ -47,7 +47,7 @@ export default async function ContactPage(_props: ContactPageProps): Promise<JSX
 					<Content components={{ p: Paragraph }} />
 				</div>
 
-				<form action="/api/contact" className="grid gap-8" method="POST">
+				<form action="/api/contact" className="grid gap-8 font-display" method="POST">
 					<div className="grid gap-8 sm:grid-cols-2">
 						<label className="grid gap-2">
 							<span className="justify-self-start border-b border-primary p-0.5 font-display text-secondary">
