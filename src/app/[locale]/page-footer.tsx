@@ -5,7 +5,7 @@ import bmfLogo from "~/public/assets/images/logo-bmf.png";
 export function PageFooter(): JSX.Element {
 	return (
 		<footer className="border-t border-secondary">
-			<div className="mx-auto flex max-w-6xl px-8 py-4 sm:justify-center">
+			<div className="mx-auto flex max-w-6xl px-6 py-4 sm:justify-center sm:px-8">
 				<div className="grid content-center gap-0.5 text-xs sm:text-center sm:text-sm">
 					<span className="font-medium">
 						Nachwuchsgruppe &quot;Gelingensbedingungen rassismussensibler Lehrer:innenbildung&quot;

@@ -16,5 +16,5 @@ interface ContainerProps {
 export function Container(props: ContainerProps): JSX.Element {
 	const size = props.size ?? "md";
 
-	return <div className={cn("mx-auto grid gap-8 p-8", sizes[size])}>{props.children}</div>;
+	return <div className={cn("mx-auto grid gap-8 p-6 sm:p-8", sizes[size])}>{props.children}</div>;
 }

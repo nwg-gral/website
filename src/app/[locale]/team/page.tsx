@@ -1,6 +1,7 @@
 import { isNonEmptyString } from "@stefanprobst/is-nonempty-string";
 import { allPeople, allTeamPages, type Person } from "contentlayer/generated";
 import { type Metadata } from "next";
+// import Image from "next/image";
 import { getMDXComponent } from "next-contentlayer/hooks";
 import { useLocale } from "next-intl";
 import { getTranslations } from "next-intl/server";
@@ -84,7 +85,7 @@ export default async function TeamPage(_props: TeamPageProps): Promise<JSX.Eleme
 														{person.role}
 													</span>
 												</div>
-												<h2 className="font-display text-2xl text-primary sm:text-3xl">
+												<h2 className="font-display text-[1.5rem] leading-[1.75rem] text-primary sm:text-[1.75rem] sm:leading-[2.125rem]">
 													{fullName}
 												</h2>
 												<div className="flex gap-4">
@@ -104,12 +105,7 @@ export default async function TeamPage(_props: TeamPageProps): Promise<JSX.Eleme
 													) : null}
 												</div>
 											</div>
-											{/* eslint-disable-next-line @next/next/no-img-element */}
-											<img
-												alt=""
-												className="h-28 w-28 shrink-0 rounded-full border-2 border-secondary object-cover sm:h-52 sm:w-52"
-												src={person.image}
-											/>
+											<Avatar src={person.image} />
 										</header>
 										<div className="max-w-xl space-y-6 text-lg">
 											<Content components={{ p: Paragraph }} />
@@ -123,5 +119,35 @@ export default async function TeamPage(_props: TeamPageProps): Promise<JSX.Eleme
 				</ul>
 			</Container>
 		</MainContent>
+	);
+}
+
+interface AvatarProps {
+	src: string;
+}
+
+function Avatar(props: AvatarProps): JSX.Element {
+	const { src } = props;
+
+	/** Image `src` can be relative path, or random url. */
+	if (src.startsWith("/")) {
+		// TODO: either get image width and height with `image-size` (which currently means at request time),
+		// or add a computed field to contentlayer.
+		// return (
+		// 	<Image
+		// 		alt=""
+		// 		className="h-28 w-28 shrink-0 rounded-full border-2 border-secondary object-cover sm:h-52 sm:w-52"
+		// 		src={src}
+		// 	/>
+		// );
+	}
+
+	return (
+		// eslint-disable-next-line @next/next/no-img-element
+		<img
+			alt=""
+			className="h-28 w-28 shrink-0 rounded-full border-2 border-secondary object-cover sm:h-52 sm:w-52"
+			src={src}
+		/>
 	);
 }

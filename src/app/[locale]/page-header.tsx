@@ -21,7 +21,7 @@ export function PageHeader(): JSX.Element {
 
 	return (
 		<header>
-			<div className="mx-auto grid max-w-6xl grid-cols-2 justify-items-center gap-4 px-8 py-4 sm:grid-cols-[160px_1fr_160px]">
+			<div className="mx-auto grid max-w-6xl grid-cols-2 justify-items-center gap-4 px-6 py-4 sm:grid-cols-[160px_1fr_160px] sm:px-8">
 				<Image alt="" className="hidden w-full object-contain sm:block" src={bmfLogo} />
 				<Image
 					alt=""
@@ -32,9 +32,9 @@ export function PageHeader(): JSX.Element {
 				{/* <LocaleSwitcher /> */}
 			</div>
 
-			<nav className="mx-auto max-w-6xl px-8 py-4">
+			<nav className="mx-auto max-w-6xl px-6 py-4 sm:px-8">
 				<ul
-					className="flex flex-wrap justify-between gap-x-4 gap-y-2 font-display text-sm"
+					className="flex flex-wrap justify-between gap-x-4 gap-y-3 font-display text-sm"
 					role="list"
 				>
 					{Object.entries(links).map(([key, link]) => {

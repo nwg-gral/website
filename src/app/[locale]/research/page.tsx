@@ -54,7 +54,7 @@ export default async function ResearchPage(_props: ResearchPageProps): Promise<J
 					const Content = card.text?.code != null ? getMDXComponent(card.text.code) : Fragment;
 
 					return (
-						<section key={card._id} className="grid gap-6 border border-secondary p-8">
+						<section key={card._id} className="grid gap-6 border border-secondary p-6 sm:p-8">
 							<SectionTitle variant="primary">{title}</SectionTitle>
 
 							<div className="space-y-6">

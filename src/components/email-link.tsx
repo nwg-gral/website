@@ -19,6 +19,7 @@ export function EmailLink(props: EmailLinkProps): JSX.Element {
 			<Image
 				alt=""
 				className="h-12 w-auto object-contain transition-all hover:text-primary"
+				loading="eager"
 				src={icon}
 			/>
 		</a>
