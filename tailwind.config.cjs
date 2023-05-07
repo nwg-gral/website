@@ -5,7 +5,7 @@ const colors = require("tailwindcss/colors");
 const animatePlugin = require("tailwindcss-animate");
 
 const neutral = colors.slate;
-const primary = "#f1452a"; // red
+const primary = "#d83f15"; // red
 const secondary = "#0e5976"; // bluegray
 
 /** @type {TailwindConfig} */
