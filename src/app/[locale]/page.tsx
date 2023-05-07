@@ -20,10 +20,13 @@ interface IndexPageProps {
 }
 
 export async function generateMetadata(): Promise<Metadata> {
-	const t = await getTranslations("IndexPage");
+	const _t = await getTranslations("IndexPage");
 
 	const metadata: Metadata = {
-		title: t("meta.title"),
+		/**
+		 * Fall back to default root layout title.
+		 */
+		// title: t("meta.title"),
 	};
 
 	return metadata;
