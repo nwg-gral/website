@@ -2,6 +2,7 @@ import { type Metadata } from "next";
 import { Link } from "next-intl";
 import { getTranslations } from "next-intl/server";
 
+import { Container } from "@/components/container";
 import { MainContent } from "@/components/main-content";
 import { PageTitle } from "@/components/page-title";
 
@@ -21,10 +22,17 @@ export default async function SuccessPage(): Promise<JSX.Element> {
 
 	return (
 		<MainContent>
-			<PageTitle>{t("thanks-for-your-message")}</PageTitle>
-			<div>
-				<Link href={{ pathname: "/" }}>{t("go-back-to-home-page")}</Link>
-			</div>
+			<Container size="sm">
+				<PageTitle>{t("thanks-for-your-message")}</PageTitle>
+				<div>
+					<Link
+						className="font-display underline underline-offset-2 transition hover:text-primary"
+						href={{ pathname: "/" }}
+					>
+						{t("go-back-to-home-page")}
+					</Link>
+				</div>
+			</Container>
 		</MainContent>
 	);
 }
