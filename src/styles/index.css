@@ -33,6 +33,15 @@ h6 {
 	text-wrap: balance;
 }
 
+:focus {
+	outline: none;
+}
+
+:focus-visible {
+	/* stylelint-disable-next-line color-no-hex */
+	outline: 2px solid #d83f15;
+}
+
 /*
  * Work around for browser incompatibilities when floating `::first-letter` pseudo-element.
  * TODO: May need to revisit in the future:

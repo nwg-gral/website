@@ -11,7 +11,7 @@ interface MainContentProps {
 
 export function MainContent(props: MainContentProps): JSX.Element {
 	return (
-		<main className={cn("pb-8", props.className)} id={id}>
+		<main className={cn("pb-8", props.className)} id={id} tabIndex={-1}>
 			{props.children}
 		</main>
 	);
