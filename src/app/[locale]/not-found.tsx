@@ -1,6 +1,7 @@
 import { type Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 
+import { Container } from "@/components/container";
 import { MainContent } from "@/components/main-content";
 import { PageTitle } from "@/components/page-title";
 
@@ -19,7 +20,9 @@ export default async function NotFoundPage(): Promise<JSX.Element> {
 
 	return (
 		<MainContent>
-			<PageTitle>{t("page-not-found")}</PageTitle>
+			<Container size="sm">
+				<PageTitle>{t("page-not-found")}</PageTitle>
+			</Container>
 		</MainContent>
 	);
 }
