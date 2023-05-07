@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import { NavLink } from "@/components/nav-link";
 // import { LocaleSwitcher } from "@/components/locale-switcher";
 import instagram from "~/public/assets/images/icon-instagram.svg";
-import gralLogo from "~/public/assets/images/logo.png";
+import gralLogo from "~/public/assets/images/logo.svg";
 import bmfLogo from "~/public/assets/images/logo-bmf.png";
 
 export function PageHeader(): JSX.Element {
@@ -22,13 +22,17 @@ export function PageHeader(): JSX.Element {
 	return (
 		<header>
 			<div className="mx-auto grid max-w-6xl grid-cols-2 justify-items-center gap-4 px-6 py-4 sm:grid-cols-[160px_1fr_160px] sm:px-8">
-				<Image alt="" className="hidden w-full object-contain sm:block" src={bmfLogo} />
+				<Image
+					alt=""
+					className="hidden w-full object-contain sm:block"
+					src={bmfLogo}
+					sizes="10rem"
+				/>
 				<Image
 					alt=""
 					className="aspect-square h-full w-full max-w-xs object-contain"
 					loading="eager"
 					src={gralLogo}
-					sizes="320px"
 				/>
 				{/* <LocaleSwitcher /> */}
 			</div>
@@ -52,6 +56,7 @@ export function PageHeader(): JSX.Element {
 								className="h-6 w-6 object-contain transition-all hover:text-primary"
 								loading="eager"
 								src={instagram}
+								sizes="1.5rem"
 							/>
 						</a>
 					</li>
