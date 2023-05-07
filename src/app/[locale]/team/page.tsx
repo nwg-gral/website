@@ -1,7 +1,7 @@
 import { isNonEmptyString } from "@stefanprobst/is-nonempty-string";
 import { allPeople, allTeamPages, type Person } from "contentlayer/generated";
 import { type Metadata } from "next";
-// import Image from "next/image";
+import Image from "next/image";
 import { getMDXComponent } from "next-contentlayer/hooks";
 import { useLocale } from "next-intl";
 import { getTranslations } from "next-intl/server";
@@ -105,7 +105,7 @@ export default async function TeamPage(_props: TeamPageProps): Promise<JSX.Eleme
 													) : null}
 												</div>
 											</div>
-											<Avatar src={person.image} />
+											<Avatar src={person.avatar} />
 										</header>
 										<div className="max-w-xl space-y-6 text-lg">
 											<Content components={{ p: Paragraph }} />
@@ -123,31 +123,30 @@ export default async function TeamPage(_props: TeamPageProps): Promise<JSX.Eleme
 }
 
 interface AvatarProps {
-	src: string;
+	src: Person["avatar"];
 }
 
 function Avatar(props: AvatarProps): JSX.Element {
 	const { src } = props;
 
-	/** Image `src` can be relative path, or random url. */
-	if (src.startsWith("/")) {
-		// TODO: either get image width and height with `image-size` (which currently means at request time),
-		// or add a computed field to contentlayer.
-		// return (
-		// 	<Image
-		// 		alt=""
-		// 		className="h-28 w-28 shrink-0 rounded-full border-2 border-secondary object-cover sm:h-52 sm:w-52"
-		// 		src={src}
-		// 	/>
-		// );
+	if (typeof src === "string") {
+		return (
+			// eslint-disable-next-line @next/next/no-img-element
+			<img
+				alt=""
+				className="h-28 w-28 shrink-0 rounded-full border-2 border-secondary object-cover sm:h-52 sm:w-52"
+				src={src}
+			/>
+		);
 	}
 
 	return (
-		// eslint-disable-next-line @next/next/no-img-element
-		<img
+		<Image
 			alt=""
 			className="h-28 w-28 shrink-0 rounded-full border-2 border-secondary object-cover sm:h-52 sm:w-52"
 			src={src}
+			sizes="(max-width: 639px) 12rem, 22rem"
+			quality={100}
 		/>
 	);
 }

@@ -18,11 +18,7 @@
 			"@/*": ["./src/*"],
 			"~/*": ["./*"]
 		},
-		"plugins": [
-			{
-				"name": "next"
-			}
-		],
+		"plugins": [{ "name": "next" }],
 		"strict": true
 	},
 	"include": [

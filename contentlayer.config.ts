@@ -1,4 +1,4 @@
-import { basename, extname } from "node:path";
+import { basename, extname, join } from "node:path";
 
 import {
 	defineComputedFields,
@@ -6,6 +6,7 @@ import {
 	defineNestedType,
 	makeSource,
 } from "contentlayer/source-files";
+import size from "image-size";
 
 const computedFields = defineComputedFields({
 	id: {
@@ -467,7 +468,18 @@ const Person = defineDocumentType(() => {
 				required: true,
 			},
 		},
-		computedFields,
+		computedFields: {
+			...computedFields,
+			avatar: {
+				type: "{ src: string; alt: string; width: number; height: number } | string" as "string",
+				resolve(doc) {
+					const src = doc["image"] as string;
+					if (!src.startsWith("/")) return src;
+					const { width, height } = size(join(process.cwd(), "public", src));
+					return { src, alt: "", width, height };
+				},
+			},
+		},
 	};
 });
 

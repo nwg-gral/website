@@ -28,6 +28,7 @@ export function PageHeader(): JSX.Element {
 					className="aspect-square h-full w-full max-w-xs object-contain"
 					loading="eager"
 					src={gralLogo}
+					sizes="320px"
 				/>
 				{/* <LocaleSwitcher /> */}
 			</div>
