@@ -8,6 +8,7 @@ import { getTranslations } from "next-intl/server";
 import { Fragment } from "react";
 
 import { Container } from "@/components/container";
+import { CVLink } from "@/components/cv-link";
 import { EmailLink } from "@/components/email-link";
 import { MainContent } from "@/components/main-content";
 import { PageTitle } from "@/components/page-title";
@@ -90,12 +91,7 @@ export default async function TeamPage(_props: TeamPageProps): Promise<JSX.Eleme
 												</h2>
 												<div className="flex gap-4">
 													{isNonEmptyString(person.cv) ? (
-														<a
-															className="transition hover:text-primary"
-															href={`mailto:${person.cv}`}
-														>
-															{person.cv}
-														</a>
+														<CVLink href={person.cv} name={fullName} />
 													) : null}
 													{isNonEmptyString(person.website) ? (
 														<WebsiteLink href={person.website} name={fullName} />

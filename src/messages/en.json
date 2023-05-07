@@ -14,6 +14,9 @@
 		"message": "Message",
 		"submit": "Submit"
 	},
+	"CVLink": {
+		"cv": "Curriculum vitae of {name}"
+	},
 	"EmailLink": {
 		"email": "Email of {name}"
 	},

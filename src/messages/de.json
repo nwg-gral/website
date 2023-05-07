@@ -14,6 +14,9 @@
 		"message": "Text",
 		"submit": "Absenden"
 	},
+	"CVLink": {
+		"cv": "Curriculum vitae von {name}"
+	},
 	"EmailLink": {
 		"email": "Email von {name}"
 	},

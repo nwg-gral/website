@@ -1,33 +1,37 @@
-<svg xmlns="http://www.w3.org/2000/svg" id="Ebene_1" version="1.1" viewBox="0 0 647.35 429.24">
-	<defs id="defs4">
-		<style id="style2">
+<svg
+	xmlns="http://www.w3.org/2000/svg"
+	id="Ebene_1"
+	data-name="Ebene 1"
+	version="1.1"
+	viewBox="0 0 648.29 430.16"
+>
+	<defs id="defs79">
+		<style id="style77">
 			.cls-1 {
 				fill: #006c8e;
 			}
-			.cls-2 {
-				fill: #fff;
-			}
-			.cls-3 {
-				stroke-width: 0.26px;
-			}
 			.cls-3,
-			.cls-4 {
+			.cls-4,
+			.cls-5 {
 				fill: none;
 			}
-			.cls-3 {
+			.cls-4 {
 				stroke: #006c8e;
 			}
-			.cls-4 {
+			.cls-3 {
+				stroke-width: 2.5px;
+			}
+			.cls-3,
+			.cls-5 {
 				stroke: #e94e24;
-				stroke-width: 0.53px;
 			}
 		</style>
 	</defs>
 	<path
-		id="path8"
+		id="path83"
 		fill="none"
 		stroke="#006c8e"
-		stroke-width="1.06"
-		d="M.53.76V428.7h646.29V.76H.53ZM.27.5l321.4 106.44L647.09.5"
+		stroke-width="2"
+		d="M1 1.21v427.94h646.29V1.21H1ZM.74.95l321.4 106.44L647.57.95"
 	/>
 </svg>
