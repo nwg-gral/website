@@ -31,7 +31,7 @@ export function PageHeader(): JSX.Element {
 				<Image
 					alt=""
 					className="aspect-square h-full w-full max-w-xs object-contain"
-					loading="eager"
+					priority
 					src={gralLogo}
 				/>
 				{/* <LocaleSwitcher /> */}
@@ -54,7 +54,7 @@ export function PageHeader(): JSX.Element {
 							<Image
 								alt=""
 								className="h-6 w-6 object-contain transition-all hover:text-primary"
-								loading="eager"
+								priority
 								src={instagram}
 								sizes="1.5rem"
 							/>
