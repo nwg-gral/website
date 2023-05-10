@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { Link, useTranslations } from "next-intl";
 
 import { NavLink } from "@/components/nav-link";
 // import { LocaleSwitcher } from "@/components/locale-switcher";
@@ -28,12 +28,13 @@ export function PageHeader(): JSX.Element {
 					src={bmfLogo}
 					sizes="10rem"
 				/>
-				<Image
-					alt=""
-					className="aspect-square h-full w-full max-w-xs object-contain"
-					priority
-					src={gralLogo}
-				/>
+				<Link
+					aria-label={links.home.label}
+					className="relative aspect-square h-full w-full max-w-xs object-contain"
+					href={links.home.href}
+				>
+					<Image alt="" className="object-contain" priority src={gralLogo} />
+				</Link>
 				{/* <LocaleSwitcher /> */}
 			</div>
 
