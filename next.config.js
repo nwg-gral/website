@@ -44,6 +44,19 @@ const config = {
 		});
 
 		/**
+		 * Cache team member images, which are content hashed and copied in contentlayer config.
+		 */
+		headers.push({
+			source: "/assets/_images/:path",
+			headers: [
+				{
+					key: "Cache-Control",
+					value: "public,max-age=31536000,immutable",
+				},
+			],
+		});
+
+		/**
 		 * Only allow indexing by search engines when the `BOTS` environment variable is set.
 		 */
 		if (process.env.BOTS !== "enabled") {
