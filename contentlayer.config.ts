@@ -1,3 +1,5 @@
+import { existsSync } from "node:fs";
+import { copyFile, mkdir, readFile } from "node:fs/promises";
 import { basename, extname, join } from "node:path";
 
 import {
@@ -6,6 +8,7 @@ import {
 	defineNestedType,
 	makeSource,
 } from "contentlayer/source-files";
+import { xxhash64 } from "hash-wasm";
 import size from "image-size";
 
 const computedFields = defineComputedFields({
@@ -472,11 +475,30 @@ const Person = defineDocumentType(() => {
 			...computedFields,
 			avatar: {
 				type: "{ src: string; alt: string; width: number; height: number } | string" as "string",
-				resolve(doc) {
+				async resolve(doc) {
 					const src = doc["image"] as string;
 					if (!src.startsWith("/")) return src;
-					const { width, height } = size(join(process.cwd(), "public", src));
-					return { src, alt: "", width, height };
+
+					const publicFolder = join(process.cwd(), "public");
+					const filePath = join(publicFolder, src);
+
+					const { width, height } = size(filePath);
+					const hash = await xxhash64(await readFile(filePath));
+
+					const extension = extname(filePath);
+					const fileName = basename(filePath).slice(0, -extension.length + 1);
+					const assetFileName = fileName + hash + extension;
+
+					const assetFolder = join(publicFolder, "assets", "_images");
+					if (!existsSync(assetFolder)) {
+						await mkdir(assetFolder, { recursive: true });
+					}
+					const assetFilePath = join(assetFolder, assetFileName);
+					await copyFile(filePath, assetFilePath);
+
+					const publicFilePath = join("/", "assets", "_images", assetFileName);
+
+					return { src: publicFilePath, alt: "", width, height };
 				},
 			},
 		},
