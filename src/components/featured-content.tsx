@@ -1,7 +1,7 @@
 import { allEvents, allPublications } from "contentlayer/generated";
 import { compareDesc } from "date-fns";
 import { getMDXComponent } from "next-contentlayer/hooks";
-import { Link, useFormatter, useLocale, useTranslations } from "next-intl";
+import { Link, useLocale, useTranslations } from "next-intl";
 
 export function FeaturedContent(): JSX.Element {
 	const title = "Aktuelles";
@@ -26,7 +26,6 @@ export function FeaturedContent(): JSX.Element {
 function FeaturedItems(): JSX.Element {
 	const locale = useLocale();
 	const t = useTranslations("FeaturedContent");
-	const format = useFormatter();
 
 	const featured = [...allEvents, ...allPublications]
 		.filter((item) => {
@@ -54,7 +53,7 @@ function FeaturedItems(): JSX.Element {
 									className="border-b border-primary font-display text-sm text-secondary transition hover:text-primary"
 									href={{ pathname: "/activities", hash: item.id }}
 								>
-									{item.title} ({format.dateTime(new Date(item.date))})
+									{item.title}
 								</Link>
 							</h3>
 							<div className="line-clamp-3">

@@ -11,7 +11,7 @@
 	overflow-wrap: break-word;
 	tab-size: 4;
 	font-synthesis: none;
-	text-size-adjust: 100%;
+	text-size-adjust: none;
 	text-rendering: optimizeLegibility;
 	-webkit-tap-highlight-color: transparent;
 	-webkit-font-smoothing: antialiased;

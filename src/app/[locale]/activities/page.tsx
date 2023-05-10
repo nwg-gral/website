@@ -8,7 +8,7 @@ import {
 import { compareDesc } from "date-fns";
 import { type Metadata } from "next";
 import { getMDXComponent } from "next-contentlayer/hooks";
-import { useFormatter, useLocale, useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import { Fragment } from "react";
 
@@ -76,7 +76,6 @@ function EventsSection(props: EventsSectionProps): JSX.Element | null {
 
 	const locale = useLocale() as Locale;
 	const t = useTranslations("ActivitiesPage");
-	const format = useFormatter();
 
 	const title = section.title;
 	const Content = section.text?.code != null ? getMDXComponent(section.text.code) : Fragment;
@@ -109,9 +108,6 @@ function EventsSection(props: EventsSectionProps): JSX.Element | null {
 								<h4>
 									<span className="border-b border-primary font-display">{event.title}</span>
 								</h4>
-								<time dateTime={event.date}>
-									{format.dateTime(new Date(event.date), { dateStyle: "long" })}
-								</time>
 								<div>
 									<Content components={{ p: SectionParagraph }} />
 								</div>
@@ -141,7 +137,6 @@ function PublicationsSection(props: PublicationsSectionProps): JSX.Element | nul
 
 	const locale = useLocale() as Locale;
 	const t = useTranslations("ActivitiesPage");
-	const format = useFormatter();
 
 	const title = section.title;
 	const Content = section.text?.code != null ? getMDXComponent(section.text.code) : Fragment;
@@ -174,9 +169,6 @@ function PublicationsSection(props: PublicationsSectionProps): JSX.Element | nul
 								<h4>
 									<span className="border-b border-primary font-display">{publication.title}</span>
 								</h4>
-								<time dateTime={publication.date}>
-									{format.dateTime(new Date(publication.date), { dateStyle: "long" })}
-								</time>
 								<div>
 									<Content />
 								</div>
