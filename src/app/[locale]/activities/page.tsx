@@ -10,7 +10,7 @@ import { type Metadata } from "next";
 import { getMDXComponent } from "next-contentlayer/hooks";
 import { useLocale, useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
-import { Fragment } from "react";
+import { Fragment, type ReactNode } from "react";
 
 import { Container } from "@/components/container";
 import { MainContent } from "@/components/main-content";
@@ -104,12 +104,12 @@ function EventsSection(props: EventsSectionProps): JSX.Element | null {
 
 					return (
 						<li key={event.id}>
-							<article className="grid gap-1" id={event.id}>
+							<article className="grid gap-2" id={event.id}>
 								<h4>
 									<span className="border-b border-primary font-display">{event.title}</span>
 								</h4>
 								<div>
-									<Content components={{ p: SectionParagraph }} />
+									<Content components={{ p: ActivityParagraph }} />
 								</div>
 								{isNonEmptyString(event.url) ? (
 									<a
@@ -165,12 +165,12 @@ function PublicationsSection(props: PublicationsSectionProps): JSX.Element | nul
 
 					return (
 						<li key={publication.id}>
-							<article className="grid gap-1" id={publication.id}>
+							<article className="grid gap-2" id={publication.id}>
 								<h4>
 									<span className="border-b border-primary font-display">{publication.title}</span>
 								</h4>
 								<div>
-									<Content />
+									<Content components={{ p: ActivityParagraph }} />
 								</div>
 								{isNonEmptyString(publication.url) ? (
 									<a
@@ -186,5 +186,19 @@ function PublicationsSection(props: PublicationsSectionProps): JSX.Element | nul
 				})}
 			</ul>
 		</section>
+	);
+}
+
+interface ActivityParagraphProps {
+	children?: ReactNode;
+}
+
+function ActivityParagraph(props: ActivityParagraphProps): JSX.Element {
+	const { children } = props;
+
+	return (
+		<p className="font-body text-[1rem] leading-[1.375rem] tracking-[0.75px] text-secondary sm:text-[1.0625rem] sm:leading-[1.4375rem]">
+			{children}
+		</p>
 	);
 }
