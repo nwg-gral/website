@@ -22,7 +22,7 @@ export function PageHeader(): JSX.Element {
 	return (
 		<header>
 			<div className="mx-auto grid max-w-6xl grid-cols-2 justify-items-center gap-4 px-6 py-4 sm:grid-cols-[160px_1fr_160px] sm:px-8">
-				{/* <LocaleSwitcher /> */}
+				<div>{/* <LocaleSwitcher /> */}</div>
 				<Link
 					aria-label={links.home.label}
 					className="relative aspect-square h-full w-full max-w-xs object-contain"
