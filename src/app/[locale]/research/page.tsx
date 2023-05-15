@@ -57,7 +57,7 @@ export default async function ResearchPage(_props: ResearchPageProps): Promise<J
 						<section key={card._id} className="grid gap-6 border border-secondary p-6 sm:p-8">
 							<SectionTitle variant="primary">{title}</SectionTitle>
 
-							<div className="space-y-6">
+							<div className="space-y-2 [&>h3:not(:first-child)]:pt-4">
 								<Content
 									components={{
 										h3: SectionHeading,
