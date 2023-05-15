@@ -106,14 +106,18 @@ function EventsSection(props: EventsSectionProps): JSX.Element | null {
 						<li key={event.id}>
 							<article className="grid gap-2" id={event.id}>
 								<h4>
-									<span className="border-b border-primary font-display">{event.title}</span>
+									<a href={event.url}>
+										<span className="border-b border-primary font-display transition hover:text-primary">
+											{event.title}
+										</span>
+									</a>
 								</h4>
 								<div>
 									<Content components={{ p: ActivityParagraph }} />
 								</div>
 								{isNonEmptyString(event.url) ? (
 									<a
-										className="block py-1 font-display text-sm text-secondary underline underline-offset-2"
+										className="block py-1 font-display text-sm text-secondary underline underline-offset-2 transition hover:text-primary"
 										href={event.url}
 									>
 										{t("read-more")}
@@ -167,14 +171,18 @@ function PublicationsSection(props: PublicationsSectionProps): JSX.Element | nul
 						<li key={publication.id}>
 							<article className="grid gap-2" id={publication.id}>
 								<h4>
-									<span className="border-b border-primary font-display">{publication.title}</span>
+									<a href={publication.url}>
+										<span className="border-b border-primary font-display transition hover:text-primary">
+											{publication.title}
+										</span>
+									</a>
 								</h4>
 								<div>
 									<Content components={{ p: ActivityParagraph }} />
 								</div>
 								{isNonEmptyString(publication.url) ? (
 									<a
-										className="block py-1 font-display text-sm text-secondary underline underline-offset-2"
+										className="block py-1 font-display text-sm text-secondary underline underline-offset-2 transition hover:text-primary"
 										href={publication.url}
 									>
 										{t("read-more")}
