@@ -1,5 +1,5 @@
 import { type Metadata } from "next";
-import { Link } from "next-intl";
+import Link from "next-intl/link";
 import { getTranslations } from "next-intl/server";
 
 import { Container } from "@/components/container";

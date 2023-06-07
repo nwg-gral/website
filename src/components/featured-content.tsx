@@ -1,7 +1,10 @@
+import { isNonEmptyString } from "@stefanprobst/is-nonempty-string";
 import { allEvents, allPublications } from "contentlayer/generated";
 import { compareDesc } from "date-fns";
 import { getMDXComponent } from "next-contentlayer/hooks";
-import { Link, useLocale, useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import Link from "next-intl/link";
+import { Fragment } from "react";
 
 export function FeaturedContent(): JSX.Element {
 	const title = "Aktuelles";
@@ -43,7 +46,8 @@ function FeaturedItems(): JSX.Element {
 	return (
 		<ul className="grid gap-4" role="list">
 			{featured.map((item) => {
-				const Content = getMDXComponent(item.body.code);
+				const code = item.body.code;
+				const Content = isNonEmptyString(code) ? getMDXComponent(code) : Fragment;
 
 				return (
 					<li key={item.id}>

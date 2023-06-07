@@ -1,3 +1,4 @@
+import { isNonEmptyString } from "@stefanprobst/is-nonempty-string";
 import {
 	allCooperationPartners,
 	allInternationalAdvisoryBoardMembers,
@@ -45,7 +46,8 @@ export default async function NetworksPage(_props: NetworksPageProps): Promise<J
 	const page = getPage(allNetworksPages, locale);
 
 	const title = page.title;
-	const Content = page.body?.code != null ? getMDXComponent(page.body.code) : Fragment;
+	const code = page.body?.code;
+	const Content = isNonEmptyString(code) ? getMDXComponent(code) : Fragment;
 
 	return (
 		<MainContent>
@@ -59,8 +61,9 @@ export default async function NetworksPage(_props: NetworksPageProps): Promise<J
 				<div className="grid gap-16">
 					<PartnerSection
 						content={
-							page.cooperationPartners.text?.code != null
-								? getMDXComponent(page.cooperationPartners.text.code)
+							isNonEmptyString(page.cooperationPartners.text?.code)
+								? // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+								  getMDXComponent(page.cooperationPartners.text!.code)
 								: Fragment
 						}
 						partners={allCooperationPartners.filter((partner) => {
@@ -71,8 +74,9 @@ export default async function NetworksPage(_props: NetworksPageProps): Promise<J
 
 					<PartnerSection
 						content={
-							page.internationalAdvisoryBoard.text?.code != null
-								? getMDXComponent(page.internationalAdvisoryBoard.text.code)
+							isNonEmptyString(page.internationalAdvisoryBoard.text?.code)
+								? // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+								  getMDXComponent(page.internationalAdvisoryBoard.text!.code)
 								: Fragment
 						}
 						partners={allInternationalAdvisoryBoardMembers.filter((partner) => {
@@ -83,7 +87,10 @@ export default async function NetworksPage(_props: NetworksPageProps): Promise<J
 
 					<PartnerSection
 						content={
-							page.networks.text?.code != null ? getMDXComponent(page.networks.text.code) : Fragment
+							isNonEmptyString(page.networks.text?.code)
+								? // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+								  getMDXComponent(page.networks.text!.code)
+								: Fragment
 						}
 						partners={allNetworkPartners.filter((partner) => {
 							return partner.locale === locale;
@@ -118,7 +125,8 @@ function PartnerSection(props: PartnerSectionProps): JSX.Element | null {
 
 			<ul className="grid gap-12 sm:grid-cols-2" role="list">
 				{partners.map((partner) => {
-					const Content = getMDXComponent(partner.body.code);
+					const code = partner.body.code;
+					const Content = isNonEmptyString(code) ? getMDXComponent(code) : Fragment;
 
 					return (
 						<Fragment key={partner.id}>

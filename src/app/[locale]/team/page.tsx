@@ -40,7 +40,8 @@ export default async function TeamPage(_props: TeamPageProps): Promise<JSX.Eleme
 	const page = getPage(allTeamPages, locale);
 
 	const title = page.title;
-	const Content = page.body?.code != null ? getMDXComponent(page.body.code) : Fragment;
+	const code = page.body?.code;
+	const Content = isNonEmptyString(code) ? getMDXComponent(code) : Fragment;
 
 	const team = allPeople
 		.filter((person) => {
@@ -73,7 +74,8 @@ export default async function TeamPage(_props: TeamPageProps): Promise<JSX.Eleme
 					{team.map((person) => {
 						const fullName = getFullName(person);
 
-						const Content = getMDXComponent(person.body.code);
+						const code = person.body.code;
+						const Content = isNonEmptyString(code) ? getMDXComponent(code) : Fragment;
 
 						return (
 							<Fragment key={person.id}>

@@ -1,6 +1,8 @@
+import { isNonEmptyString } from "@stefanprobst/is-nonempty-string";
 import { allImprintPages } from "contentlayer/generated";
 import { getMDXComponent } from "next-contentlayer/hooks";
 import { useLocale } from "next-intl";
+import { Fragment } from "react";
 
 import { SectionTitle } from "@/components/section-title";
 import { getPage } from "@/lib/content";
@@ -12,7 +14,8 @@ export function ImprintSection(): JSX.Element {
 	const page = getPage(allImprintPages, locale);
 
 	const title = page.title;
-	const Content = getMDXComponent(page.body?.code ?? "");
+	const code = page.body?.code;
+	const Content = isNonEmptyString(code) ? getMDXComponent(code) : Fragment;
 
 	return (
 		<section className="grid gap-4">

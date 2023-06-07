@@ -1,3 +1,4 @@
+import { isNonEmptyString } from "@stefanprobst/is-nonempty-string";
 import { allResearchPages } from "contentlayer/generated";
 import { type Metadata } from "next";
 import { getMDXComponent } from "next-contentlayer/hooks";
@@ -38,7 +39,8 @@ export default async function ResearchPage(_props: ResearchPageProps): Promise<J
 	const page = getPage(allResearchPages, locale);
 
 	const title = page.title;
-	const Content = page.body?.code != null ? getMDXComponent(page.body.code) : Fragment;
+	const code = page.body?.code;
+	const Content = isNonEmptyString(code) ? getMDXComponent(code) : Fragment;
 
 	return (
 		<MainContent>
@@ -51,7 +53,8 @@ export default async function ResearchPage(_props: ResearchPageProps): Promise<J
 
 				{page.cards?.map((card) => {
 					const title = card.title;
-					const Content = card.text?.code != null ? getMDXComponent(card.text.code) : Fragment;
+					const code = card.text?.code;
+					const Content = isNonEmptyString(code) ? getMDXComponent(code) : Fragment;
 
 					return (
 						<section key={card._id} className="grid gap-6 border border-secondary p-6 sm:p-8">

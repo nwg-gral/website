@@ -1,3 +1,4 @@
+import { isNonEmptyString } from "@stefanprobst/is-nonempty-string";
 import { allContactPages } from "contentlayer/generated";
 import { type Metadata } from "next";
 import { getMDXComponent } from "next-contentlayer/hooks";
@@ -36,7 +37,8 @@ export default async function ContactPage(_props: ContactPageProps): Promise<JSX
 	const page = getPage(allContactPages, locale);
 
 	const title = page.title;
-	const Content = page.body?.code != null ? getMDXComponent(page.body.code) : Fragment;
+	const code = page.body?.code;
+	const Content = isNonEmptyString(code) ? getMDXComponent(code) : Fragment;
 
 	return (
 		<MainContent>

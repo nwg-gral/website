@@ -44,7 +44,8 @@ export default async function ActivitiesPage(_props: ActivitiesPageProps): Promi
 	const page = getPage(allActivitiesPages, locale);
 
 	const title = page.title;
-	const Content = page.body?.code != null ? getMDXComponent(page.body.code) : Fragment;
+	const code = page.body?.code;
+	const Content = isNonEmptyString(code) ? getMDXComponent(code) : Fragment;
 
 	return (
 		<MainContent>
@@ -78,7 +79,8 @@ function EventsSection(props: EventsSectionProps): JSX.Element | null {
 	const t = useTranslations("ActivitiesPage");
 
 	const title = section.title;
-	const Content = section.text?.code != null ? getMDXComponent(section.text.code) : Fragment;
+	const code = section.text?.code;
+	const Content = isNonEmptyString(code) ? getMDXComponent(code) : Fragment;
 
 	const events = allEvents
 		.filter((event) => {
@@ -100,7 +102,8 @@ function EventsSection(props: EventsSectionProps): JSX.Element | null {
 
 			<ul className="grid gap-6 sm:grid-cols-2" role="list">
 				{events.map((event) => {
-					const Content = getMDXComponent(event.body.code);
+					const code = event.body.code;
+					const Content = isNonEmptyString(code) ? getMDXComponent(code) : Fragment;
 
 					return (
 						<li key={event.id}>
@@ -143,7 +146,8 @@ function PublicationsSection(props: PublicationsSectionProps): JSX.Element | nul
 	const t = useTranslations("ActivitiesPage");
 
 	const title = section.title;
-	const Content = section.text?.code != null ? getMDXComponent(section.text.code) : Fragment;
+	const code = section.text?.code;
+	const Content = isNonEmptyString(code) ? getMDXComponent(code) : Fragment;
 
 	const publications = allPublications
 		.filter((publication) => {
@@ -165,7 +169,8 @@ function PublicationsSection(props: PublicationsSectionProps): JSX.Element | nul
 
 			<ul className="grid gap-6 sm:grid-cols-2" role="list">
 				{publications.map((publication) => {
-					const Content = getMDXComponent(publication.body.code);
+					const code = publication.body.code;
+					const Content = isNonEmptyString(code) ? getMDXComponent(code) : Fragment;
 
 					return (
 						<li key={publication.id}>
