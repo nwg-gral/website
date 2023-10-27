@@ -52,6 +52,9 @@ export async function generateMetadata(_params: RootLayoutProps): Promise<Metada
 		twitter: {
 			card: "summary_large_image",
 		},
+		verification: {
+			google: "I6mNPj_NiuDtYDYiLAZ3usPmNQ55ezYQ6EtSJ9utnh8",
+		},
 	};
 
 	return metadata;
