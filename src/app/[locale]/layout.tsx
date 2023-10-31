@@ -53,7 +53,7 @@ export async function generateMetadata(_params: RootLayoutProps): Promise<Metada
 			card: "summary_large_image",
 		},
 		verification: {
-			google: "I6mNPj_NiuDtYDYiLAZ3usPmNQ55ezYQ6EtSJ9utnh8",
+			google: "-DQUJYM86am02kuON8bpCqod_gOABsPv-BPO8E7Ob3o",
 		},
 	};
 
