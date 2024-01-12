@@ -1,9 +1,8 @@
-import { isNonEmptyString } from "@stefanprobst/is-nonempty-string";
+import { isNonEmptyString } from "@stefanprobst/lib";
 import { allResearchPages } from "contentlayer/generated";
 import { type Metadata } from "next";
 import { getMDXComponent } from "next-contentlayer/hooks";
-import { useLocale } from "next-intl";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, unstable_setRequestLocale as setRequestLocale } from "next-intl/server";
 import { Fragment } from "react";
 
 import { Container } from "@/components/container";
@@ -32,8 +31,12 @@ export async function generateMetadata(): Promise<Metadata> {
 	return metadata;
 }
 
-export default async function ResearchPage(_props: ResearchPageProps): Promise<JSX.Element> {
-	const locale = useLocale() as Locale;
+export default async function ResearchPage(props: ResearchPageProps): Promise<JSX.Element> {
+	const { params } = props;
+
+	const { locale } = params;
+	setRequestLocale(locale);
+
 	const _t = await getTranslations("ResearchPage");
 
 	const page = getPage(allResearchPages, locale);

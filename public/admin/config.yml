@@ -1,4 +1,5 @@
 site_url: https://www.nwg-gral.de
+logo_url: /assets/images/logo.svg
 load_config_file: true
 local_backend: true
 backend:

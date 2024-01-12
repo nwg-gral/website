@@ -1,8 +1,8 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import Link from "next-intl/link";
 
 import { NavLink } from "@/components/nav-link";
+import { Link } from "@/lib/navigation";
 // import { LocaleSwitcher } from "@/components/locale-switcher";
 import instagram from "~/public/assets/images/icon-instagram.svg";
 import gralLogo from "~/public/assets/images/logo.svg";

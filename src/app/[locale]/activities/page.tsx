@@ -1,4 +1,4 @@
-import { isNonEmptyString } from "@stefanprobst/is-nonempty-string";
+import { isNonEmptyString } from "@stefanprobst/lib";
 import {
 	allActivitiesPages,
 	allEvents,
@@ -9,7 +9,7 @@ import { compareDesc } from "date-fns";
 import { type Metadata } from "next";
 import { getMDXComponent } from "next-contentlayer/hooks";
 import { useLocale, useTranslations } from "next-intl";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, unstable_setRequestLocale as setRequestLocale } from "next-intl/server";
 import { Fragment, type ReactNode } from "react";
 
 import { Container } from "@/components/container";
@@ -37,8 +37,12 @@ export async function generateMetadata(): Promise<Metadata> {
 	return metadata;
 }
 
-export default async function ActivitiesPage(_props: ActivitiesPageProps): Promise<JSX.Element> {
-	const locale = useLocale() as Locale;
+export default async function ActivitiesPage(props: ActivitiesPageProps): Promise<JSX.Element> {
+	const { params } = props;
+
+	const { locale } = params;
+	setRequestLocale(locale);
+
 	const _t = await getTranslations("ActivitiesPage");
 
 	const page = getPage(allActivitiesPages, locale);

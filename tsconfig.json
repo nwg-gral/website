@@ -3,23 +3,17 @@
 	"compilerOptions": {
 		"baseUrl": ".",
 		"exactOptionalPropertyTypes": false,
-		/**
-		 * Next.js does not yet understand `verbatimModuleSyntax`.
-		 * @see https://github.com/vercel/next.js/issues/46509
-		 */
-		"isolatedModules": true,
-		/**
-		 * Next.js does not yet understand `bundler`.
-		 * @see https://github.com/vercel/next.js/issues/47858
-		 */
-		"moduleResolution": "node",
 		"paths": {
 			"contentlayer/generated": ["./.contentlayer/generated"],
 			"@/*": ["./src/*"],
 			"~/*": ["./*"]
 		},
-		"plugins": [{ "name": "next" }],
-		"strict": true
+		"plugins": [
+			{
+				"name": "next"
+			}
+		],
+		"strictNullChecks": true
 	},
 	"include": [
 		"./next-env.d.ts",
@@ -27,7 +21,6 @@
 		"./**/*.tsx",
 		".next/types/**/*.ts",
 		"./*.config.js",
-		"./*.config.cjs",
 		"./.contentlayer/generated"
 	],
 	"exclude": ["node_modules"]

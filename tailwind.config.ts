@@ -1,15 +1,13 @@
-/** @typedef {import('tailwindcss').Config} TailwindConfig */
-
-const typographyPlugin = require("@tailwindcss/typography");
-const colors = require("tailwindcss/colors");
-const animatePlugin = require("tailwindcss-animate");
+import typographyPlugin from "@tailwindcss/typography";
+import type { Config } from "tailwindcss";
+import colors from "tailwindcss/colors";
+import animatePlugin from "tailwindcss-animate";
 
 const neutral = colors.slate;
 const primary = "#d83f15"; // red
 const secondary = "#0e5976"; // bluegray
 
-/** @type {TailwindConfig} */
-const config = {
+const config: Config = {
 	content: ["./src/**/*.@(mdx|ts|tsx)"],
 	plugins: [animatePlugin, typographyPlugin],
 	theme: {
@@ -27,4 +25,4 @@ const config = {
 	},
 };
 
-module.exports = config;
+export default config;

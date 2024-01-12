@@ -9,7 +9,7 @@
 		font-size="16"
 		font-weight="500"
 		letter-spacing=".05em"
-		style="font-variation-settings: 'wght' 500"
+		style="font-variation-settings: &quot;wght&quot; 500"
 	/>
 	<path
 		fill="none"

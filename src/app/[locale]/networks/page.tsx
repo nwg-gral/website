@@ -1,4 +1,4 @@
-import { isNonEmptyString } from "@stefanprobst/is-nonempty-string";
+import { isNonEmptyString } from "@stefanprobst/lib";
 import {
 	allCooperationPartners,
 	allInternationalAdvisoryBoardMembers,
@@ -10,8 +10,7 @@ import {
 } from "contentlayer/generated";
 import { type Metadata } from "next";
 import { getMDXComponent } from "next-contentlayer/hooks";
-import { useLocale } from "next-intl";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, unstable_setRequestLocale as setRequestLocale } from "next-intl/server";
 import { type ComponentType, Fragment, type ReactNode } from "react";
 
 import { Container } from "@/components/container";
@@ -39,8 +38,12 @@ export async function generateMetadata(): Promise<Metadata> {
 	return metadata;
 }
 
-export default async function NetworksPage(_props: NetworksPageProps): Promise<JSX.Element> {
-	const locale = useLocale() as Locale;
+export default async function NetworksPage(props: NetworksPageProps): Promise<JSX.Element> {
+	const { params } = props;
+
+	const { locale } = params;
+	setRequestLocale(locale);
+
 	const _t = await getTranslations("NetworksPage");
 
 	const page = getPage(allNetworksPages, locale);
@@ -62,8 +65,7 @@ export default async function NetworksPage(_props: NetworksPageProps): Promise<J
 					<PartnerSection
 						content={
 							isNonEmptyString(page.cooperationPartners.text?.code)
-								? // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-								  getMDXComponent(page.cooperationPartners.text!.code)
+								? getMDXComponent(page.cooperationPartners.text.code)
 								: Fragment
 						}
 						partners={allCooperationPartners.filter((partner) => {
@@ -75,8 +77,7 @@ export default async function NetworksPage(_props: NetworksPageProps): Promise<J
 					<PartnerSection
 						content={
 							isNonEmptyString(page.internationalAdvisoryBoard.text?.code)
-								? // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-								  getMDXComponent(page.internationalAdvisoryBoard.text!.code)
+								? getMDXComponent(page.internationalAdvisoryBoard.text.code)
 								: Fragment
 						}
 						partners={allInternationalAdvisoryBoardMembers.filter((partner) => {
@@ -88,8 +89,7 @@ export default async function NetworksPage(_props: NetworksPageProps): Promise<J
 					<PartnerSection
 						content={
 							isNonEmptyString(page.networks.text?.code)
-								? // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-								  getMDXComponent(page.networks.text!.code)
+								? getMDXComponent(page.networks.text.code)
 								: Fragment
 						}
 						partners={allNetworkPartners.filter((partner) => {

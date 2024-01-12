@@ -8,6 +8,5 @@ export default createMiddleware({
 });
 
 export const config = {
-	/** Skip all paths which should not be internationalized. */
-	matcher: ["/((?!admin|api|_next|.*\\..*).*)"],
+	matcher: ["/", "/de/:path*", "/en/:path*"],
 };

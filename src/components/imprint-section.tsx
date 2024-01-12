@@ -1,4 +1,4 @@
-import { isNonEmptyString } from "@stefanprobst/is-nonempty-string";
+import { isNonEmptyString } from "@stefanprobst/lib";
 import { allImprintPages } from "contentlayer/generated";
 import { getMDXComponent } from "next-contentlayer/hooks";
 import { useLocale } from "next-intl";

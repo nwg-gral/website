@@ -1,9 +1,9 @@
 "use client";
 
 import { type LinkProps } from "next/link";
-import { usePathname } from "next/navigation";
-import Link from "next-intl/link";
 import { type ReactNode } from "react";
+
+import { Link, usePathname } from "@/lib/navigation";
 
 interface NavLinkProps {
 	children: ReactNode;

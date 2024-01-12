@@ -2,9 +2,8 @@ import "tailwindcss/tailwind.css";
 import "@/styles/index.css";
 
 import { type Metadata } from "next";
-import { notFound } from "next/navigation";
-import { useLocale, useTranslations } from "next-intl";
-import { getLocale, getTranslations } from "next-intl/server";
+import { useTranslations } from "next-intl";
+import { getTranslations, unstable_setRequestLocale as setRequestLocale } from "next-intl/server";
 import { type ReactNode } from "react";
 
 import { PageFooter } from "@/app/[locale]/page-footer";
@@ -15,7 +14,7 @@ import { cn } from "@/lib/cn";
 import * as fonts from "@/lib/fonts";
 import { baseUrl } from "~/config/app.config";
 // import { baseUrl } from "~/config/app.config";
-import { type Locale } from "~/config/i18n.config";
+import { type Locale, locales } from "~/config/i18n.config";
 
 interface RootLayoutProps {
 	children: ReactNode;
@@ -24,15 +23,14 @@ interface RootLayoutProps {
 	};
 }
 
-// TODO: requries `next/intl` support
-// export function generateStaticParams(): Array<RootLayoutProps["params"]> {
-// 	return locales.map((locale) => {
-// 		return { locale };
-// 	});
-// }
+export function generateStaticParams(): Array<RootLayoutProps["params"]> {
+	return locales.map((locale) => {
+		return { locale };
+	});
+}
 
-export async function generateMetadata(_params: RootLayoutProps): Promise<Metadata> {
-	const locale = getLocale();
+export async function generateMetadata(props: RootLayoutProps): Promise<Metadata> {
+	const { locale } = props.params;
 	const t = await getTranslations("RootLayout");
 
 	const metadata: Metadata = {
@@ -63,12 +61,10 @@ export async function generateMetadata(_params: RootLayoutProps): Promise<Metada
 export default function RootLayout(props: RootLayoutProps): JSX.Element {
 	const { children, params } = props;
 
-	const locale = useLocale();
-	const t = useTranslations("RootLayout");
+	const { locale } = params;
+	setRequestLocale(locale);
 
-	if (params.locale !== locale) {
-		notFound();
-	}
+	const t = useTranslations("RootLayout");
 
 	return (
 		<html

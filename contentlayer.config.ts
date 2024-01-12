@@ -476,7 +476,7 @@ const Person = defineDocumentType(() => {
 			avatar: {
 				type: "{ src: string; alt: string; width: number; height: number } | string" as "string",
 				async resolve(doc) {
-					const src = doc["image"] as string;
+					const src = doc.image;
 					if (!src.startsWith("/")) return src;
 
 					const publicFolder = join(process.cwd(), "public");

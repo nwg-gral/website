@@ -1,4 +1,4 @@
-import { assert } from "@stefanprobst/assert";
+import { assert } from "@stefanprobst/lib";
 
 import { type Locale } from "~/config/i18n.config";
 

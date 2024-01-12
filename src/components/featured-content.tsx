@@ -1,10 +1,11 @@
-import { isNonEmptyString } from "@stefanprobst/is-nonempty-string";
+import { isNonEmptyString } from "@stefanprobst/lib";
 import { allEvents, allPublications } from "contentlayer/generated";
 import { compareDesc } from "date-fns";
 import { getMDXComponent } from "next-contentlayer/hooks";
 import { useLocale, useTranslations } from "next-intl";
-import Link from "next-intl/link";
 import { Fragment } from "react";
+
+import { Link } from "@/lib/navigation";
 
 export function FeaturedContent(): JSX.Element {
 	const title = "Aktuelles";

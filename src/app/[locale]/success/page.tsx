@@ -1,10 +1,17 @@
 import { type Metadata } from "next";
-import Link from "next-intl/link";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, unstable_setRequestLocale as setRequestLocale } from "next-intl/server";
 
 import { Container } from "@/components/container";
 import { MainContent } from "@/components/main-content";
 import { PageTitle } from "@/components/page-title";
+import { Link } from "@/lib/navigation";
+import type { Locale } from "~/config/i18n.config";
+
+interface SuccessPageProps {
+	params: {
+		locale: Locale;
+	};
+}
 
 export async function generateMetadata(): Promise<Metadata> {
 	const t = await getTranslations("SuccessPage");
@@ -17,7 +24,12 @@ export async function generateMetadata(): Promise<Metadata> {
 	return metadata;
 }
 
-export default async function SuccessPage(): Promise<JSX.Element> {
+export default async function SuccessPage(props: SuccessPageProps): Promise<JSX.Element> {
+	const { params } = props;
+
+	const { locale } = params;
+	setRequestLocale(locale);
+
 	const t = await getTranslations("SuccessPage");
 
 	return (

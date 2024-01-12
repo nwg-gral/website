@@ -1,7 +1,8 @@
 "use client";
 
-import Link from "next-intl/link";
 import { type ReactNode } from "react";
+
+import { Link } from "@/lib/navigation";
 
 interface SkipLinkProps {
 	children: ReactNode;

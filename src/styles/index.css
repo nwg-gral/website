@@ -61,6 +61,7 @@ p::first-letter {
 	}
 }
 
+/* stylelint-disable-next-line media-feature-range-notation */
 @media (min-width: 40rem) {
 	@-moz-document url-prefix() {
 		p::first-letter {
