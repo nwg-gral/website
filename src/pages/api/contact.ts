@@ -15,7 +15,9 @@ export default async function handler(request: NextApiRequest, response: NextApi
 	}
 
 	try {
-		const formData = request.body;
+		const formData = request.body as
+			| { name: string; email: string; message: string; bot: string }
+			| undefined;
 
 		if (formData == null) {
 			return response.status(400).end();
