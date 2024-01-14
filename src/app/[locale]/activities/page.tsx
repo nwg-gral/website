@@ -1,4 +1,4 @@
-import { isNonEmptyString } from "@stefanprobst/lib";
+import { groupBy, isNonEmptyString } from "@stefanprobst/lib";
 import {
 	allActivitiesPages,
 	allEvents,
@@ -96,6 +96,10 @@ function EventsSection(props: EventsSectionProps): JSX.Element | null {
 
 	if (events.length === 0) return null;
 
+	const eventsGroupedByYear = groupBy(events, (event) => {
+		return new Date(event.date).getUTCFullYear();
+	});
+
 	return (
 		<section className="grid gap-4">
 			<SectionTitle>{title}</SectionTitle>
@@ -104,37 +108,44 @@ function EventsSection(props: EventsSectionProps): JSX.Element | null {
 				<Content components={{ p: Paragraph }} />
 			</div>
 
-			<ul className="grid gap-6 sm:grid-cols-2" role="list">
-				{events.map((event) => {
-					const code = event.body.code;
-					const Content = isNonEmptyString(code) ? getMDXComponent(code) : Fragment;
+			{Object.entries(eventsGroupedByYear).map(([year, events]) => {
+				return (
+					<section key={year} className="grid gap-6 pb-6">
+						<h3 className="border-b border-primary font-display">{year}</h3>
+						<ul className="grid gap-6 sm:grid-cols-2" role="list">
+							{events.map((event) => {
+								const code = event.body.code;
+								const Content = isNonEmptyString(code) ? getMDXComponent(code) : Fragment;
 
-					return (
-						<li key={event.id}>
-							<article className="grid gap-2" id={event.id}>
-								<h4>
-									<a href={event.url}>
-										<span className="border-b border-primary font-display transition hover:text-primary">
-											{event.title}
-										</span>
-									</a>
-								</h4>
-								<div>
-									<Content components={{ p: ActivityParagraph }} />
-								</div>
-								{isNonEmptyString(event.url) ? (
-									<a
-										className="block py-1 font-display text-sm text-secondary underline underline-offset-2 transition hover:text-primary"
-										href={event.url}
-									>
-										{t("read-more")}
-									</a>
-								) : null}
-							</article>
-						</li>
-					);
-				})}
-			</ul>
+								return (
+									<li key={event.id}>
+										<article className="grid gap-2" id={event.id}>
+											<h4>
+												<a href={event.url}>
+													<span className="border-b border-primary font-display transition hover:text-primary">
+														{event.title}
+													</span>
+												</a>
+											</h4>
+											<div>
+												<Content components={{ p: ActivityParagraph }} />
+											</div>
+											{isNonEmptyString(event.url) ? (
+												<a
+													className="block py-1 font-display text-sm text-secondary underline underline-offset-2 transition hover:text-primary"
+													href={event.url}
+												>
+													{t("read-more")}
+												</a>
+											) : null}
+										</article>
+									</li>
+								);
+							})}
+						</ul>
+					</section>
+				);
+			})}
 		</section>
 	);
 }

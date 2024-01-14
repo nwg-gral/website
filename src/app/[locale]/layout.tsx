@@ -1,6 +1,3 @@
-import "tailwindcss/tailwind.css";
-import "@/styles/index.css";
-
 import { type Metadata } from "next";
 import { useTranslations } from "next-intl";
 import { getTranslations, unstable_setRequestLocale as setRequestLocale } from "next-intl/server";
@@ -13,7 +10,6 @@ import { SkipLink } from "@/app/[locale]/skip-link";
 import { id } from "@/components/main-content";
 import { cn } from "@/lib/cn";
 import * as fonts from "@/lib/fonts";
-import { baseUrl } from "~/config/app.config";
 import { type Locale, locales } from "~/config/i18n.config";
 
 interface RootLayoutProps {
@@ -39,10 +35,6 @@ export async function generateMetadata(props: RootLayoutProps): Promise<Metadata
 			default: t("meta.title"),
 		},
 		description: t("meta.description"),
-		metadataBase: new URL(baseUrl),
-		alternates: {
-			canonical: "./",
-		},
 		openGraph: {
 			type: "website",
 			title: t("meta.title"),
