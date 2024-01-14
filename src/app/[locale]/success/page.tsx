@@ -18,7 +18,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 	const metadata: Metadata = {
 		title: t("meta.title"),
-		robots: { index: false, follow: false },
+		robots: { index: false },
 	};
 
 	return metadata;
