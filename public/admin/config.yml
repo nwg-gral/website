@@ -394,8 +394,12 @@ collections:
         required: false
         widget: boolean
         i18n: duplicate
+      - name: summary
+        label: Summary
+        widget: markdown
+        i18n: true
       - name: body
-        label: Description
+        label: Details
         widget: markdown
         i18n: true
 

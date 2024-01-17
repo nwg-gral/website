@@ -19,6 +19,7 @@ import { Paragraph } from "@/components/paragraph";
 import { SectionParagraph } from "@/components/section-paragraph";
 import { SectionTitle } from "@/components/section-title";
 import { getPage } from "@/lib/content";
+import { Link } from "@/lib/navigation";
 import { type Locale } from "~/config/i18n.config";
 
 interface ActivitiesPageProps {
@@ -114,30 +115,30 @@ function EventsSection(props: EventsSectionProps): JSX.Element | null {
 						<h3 className="border-b border-primary font-display">{year}</h3>
 						<ul className="grid gap-6 sm:grid-cols-2" role="list">
 							{events.map((event) => {
-								const code = event.body.code;
+								const code = event.summary.code;
 								const Content = isNonEmptyString(code) ? getMDXComponent(code) : Fragment;
+
+								const href = `/activities/events/${event.id}`;
 
 								return (
 									<li key={event.id}>
 										<article className="grid gap-2" id={event.id}>
 											<h4>
-												<a href={event.url}>
+												<Link href={href}>
 													<span className="border-b border-primary font-display transition hover:text-primary">
 														{event.title}
 													</span>
-												</a>
+												</Link>
 											</h4>
 											<div>
 												<Content components={{ p: ActivityParagraph }} />
 											</div>
-											{isNonEmptyString(event.url) ? (
-												<a
-													className="block py-1 font-display text-sm text-secondary underline underline-offset-2 transition hover:text-primary"
-													href={event.url}
-												>
-													{t("read-more")}
-												</a>
-											) : null}
+											<Link
+												className="block py-1 font-display text-sm text-secondary underline underline-offset-2 transition hover:text-primary"
+												href={href}
+											>
+												{t("read-more")}
+											</Link>
 										</article>
 									</li>
 								);

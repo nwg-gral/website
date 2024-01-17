@@ -366,6 +366,10 @@ const Event = defineDocumentType(() => {
 				type: "boolean",
 				required: false,
 			},
+			summary: {
+				type: "mdx",
+				required: true,
+			},
 		},
 		computedFields,
 	};

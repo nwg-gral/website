@@ -20,6 +20,12 @@
 	"EmailLink": {
 		"email": "Email of {name}"
 	},
+	"EventPage": {
+		"meta": {
+			"title": "Event"
+		},
+		"read-more": "Read more"
+	},
 	"FeaturedContent": {
 		"empty": "Nothing to see"
 	},
@@ -59,7 +65,7 @@
 	},
 	"RootLayout": {
 		"meta": {
-			"title": "GraL",
+			"title": "Gelingensbedingungen rassismussensibler Lehrer:innenbildung (GraL)",
 			"description": "Nachwuchsgruppe Gelingensbedingungen rassismussensibler Lehrer:innenbildung"
 		},
 		"skip-to-main-content": "Skip to main content"
