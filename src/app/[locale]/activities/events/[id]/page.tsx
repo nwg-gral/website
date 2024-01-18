@@ -20,8 +20,9 @@ interface EventPageProps {
 }
 
 export function generateMetadata(props: EventPageProps): Metadata {
-	const { id, locale } = props.params;
+	const { id: _id, locale } = props.params;
 
+	const id = decodeURIComponent(_id);
 	const event = allEvents.find((e) => {
 		return e.locale === locale && e.id === id;
 	});
@@ -38,11 +39,12 @@ export function generateMetadata(props: EventPageProps): Metadata {
 export default async function EventPage(props: EventPageProps): Promise<JSX.Element> {
 	const { params } = props;
 
-	const { id, locale } = params;
+	const { id: _id, locale } = params;
 	setRequestLocale(locale);
 
 	const t = await getTranslations("EventPage");
 
+	const id = decodeURIComponent(_id);
 	const event = allEvents.find((e) => {
 		return e.locale === locale && e.id === id;
 	});
