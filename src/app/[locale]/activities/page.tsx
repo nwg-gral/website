@@ -1,4 +1,4 @@
-import { groupBy, isNonEmptyString } from "@stefanprobst/lib";
+import { groupByToMap, isNonEmptyString } from "@stefanprobst/lib";
 import {
 	allActivitiesPages,
 	allEvents,
@@ -97,22 +97,30 @@ function EventsSection(props: EventsSectionProps): JSX.Element | null {
 
 	if (events.length === 0) return null;
 
-	const eventsGroupedByYear = groupBy(events, (event) => {
+	const eventsGroupedByYear = groupByToMap(events, (event) => {
 		return new Date(event.date).getUTCFullYear();
+	});
+	const sorted = Array.from(eventsGroupedByYear.keys()).sort((a, z) => {
+		return z - a;
 	});
 
 	return (
 		<section className="grid gap-4">
-			<SectionTitle>{title}</SectionTitle>
+			{/* <SectionTitle>{title}</SectionTitle> */}
+			<h2 className="sr-only">{title}</h2>
 
 			<div className="space-y-6">
 				<Content components={{ p: Paragraph }} />
 			</div>
 
-			{Object.entries(eventsGroupedByYear).map(([year, events]) => {
+			{sorted.map((year) => {
+				const events = eventsGroupedByYear.get(year) ?? [];
+
 				return (
 					<section key={year} className="grid gap-6 pb-6">
-						<h3 className="border-b border-primary font-display">{year}</h3>
+						<h3 className="border-b border-primary pb-1 font-display text-[1.375rem] leading-[1.625rem] text-primary">
+							{year}
+						</h3>
 						<ul className="grid gap-6 sm:grid-cols-2" role="list">
 							{events.map((event) => {
 								const code = event.summary.code;
