@@ -9,7 +9,7 @@ import { Fragment } from "react";
 import { Container } from "@/components/container";
 import { MainContent } from "@/components/main-content";
 import { PageTitle } from "@/components/page-title";
-import { Paragraph } from "@/components/paragraph";
+import { ParagraphNoDropCaps } from "@/components/paragraph";
 import { type Locale } from "~/config/i18n.config";
 
 interface EventPageProps {
@@ -61,7 +61,7 @@ export default async function EventPage(props: EventPageProps): Promise<JSX.Elem
 				<PageTitle>{title}</PageTitle>
 
 				<div className="space-y-6">
-					<Content components={{ p: Paragraph }} />
+					<Content components={{ p: ParagraphNoDropCaps }} />
 				</div>
 
 				{isNonEmptyString(event.url) ? (

@@ -11,3 +11,11 @@ export function Paragraph(props: ParagraphProps): JSX.Element {
 		</p>
 	);
 }
+
+export function ParagraphNoDropCaps(props: ParagraphProps): JSX.Element {
+	return (
+		<p className="text-secondarysm:text-[1.25rem] font-body text-[1rem] leading-[1.25rem] tracking-[0.75px] sm:leading-[1.4375rem]">
+			{props.children}
+		</p>
+	);
+}
