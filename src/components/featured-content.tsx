@@ -47,7 +47,7 @@ function FeaturedItems(): JSX.Element {
 	return (
 		<ul className="grid gap-4" role="list">
 			{featured.map((item) => {
-				const code = item.body.code;
+				const code = "summary" in item ? item.summary.code : item.body.code;
 				const Content = isNonEmptyString(code) ? getMDXComponent(code) : Fragment;
 
 				return (
