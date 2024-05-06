@@ -6,7 +6,7 @@ import { Link } from "@/lib/navigation";
 // import { LocaleSwitcher } from "@/components/locale-switcher";
 import instagram from "~/public/assets/images/icon-instagram.svg";
 import gralLogo from "~/public/assets/images/logo.svg";
-import bmfLogo from "~/public/assets/images/logo-bmf.png";
+import bmfLogo from "~/public/assets/images/logo-bmf.jpg";
 
 export function PageHeader(): JSX.Element {
 	const t = useTranslations("PageHeader");

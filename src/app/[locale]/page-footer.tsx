@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import bmfLogo from "~/public/assets/images/logo-bmf.png";
+import bmfLogo from "~/public/assets/images/logo-bmf.jpg";
 
 export function PageFooter(): JSX.Element {
 	return (
