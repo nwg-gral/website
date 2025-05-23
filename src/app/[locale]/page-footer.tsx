@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import bmfLogo from "~/public/assets/images/logo-bmf.jpg";
+import bmLogo from "~/public/assets/images/logo-bm.jpg";
 
 export function PageFooter(): JSX.Element {
 	return (
@@ -32,7 +32,7 @@ export function PageFooter(): JSX.Element {
 					</span>
 				</div>
 
-				<Image alt="" className="h-32 w-32 object-contain sm:hidden" src={bmfLogo} />
+				<Image alt="" className="h-32 w-32 object-contain sm:hidden" src={bmLogo} />
 			</div>
 		</footer>
 	);

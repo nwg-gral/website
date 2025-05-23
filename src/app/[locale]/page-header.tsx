@@ -6,7 +6,7 @@ import { Link } from "@/lib/navigation";
 // import { LocaleSwitcher } from "@/components/locale-switcher";
 import instagram from "~/public/assets/images/icon-instagram.svg";
 import gralLogo from "~/public/assets/images/logo.svg";
-import bmfLogo from "~/public/assets/images/logo-bmf.jpg";
+import bmLogo from "~/public/assets/images/logo-bm.jpg";
 
 export function PageHeader(): JSX.Element {
 	const t = useTranslations("PageHeader");
@@ -34,7 +34,7 @@ export function PageHeader(): JSX.Element {
 				<Image
 					alt=""
 					className="hidden w-full object-contain sm:block"
-					src={bmfLogo}
+					src={bmLogo}
 					sizes="10rem"
 				/>
 			</div>
