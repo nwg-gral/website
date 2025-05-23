@@ -1,5 +1,7 @@
 # GraL website
 
+Deployed at <https://www.nwg-gral.de>.
+
 ## Setting up GitHub OAuth for CMS sign in
 
 - create a new OAuth app at <https://github.com/settings/applications> and set the callback URL to
