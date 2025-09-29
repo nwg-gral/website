@@ -4,10 +4,9 @@
 	"license": "MIT",
 	"type": "module",
 	"engines": {
-		"node": "18.x",
-		"pnpm": "8.x"
+		"node": "22.x"
 	},
-	"packageManager": "pnpm@8.14.1",
+	"packageManager": "pnpm@10.17.1",
 	"scripts": {
 		"analyze": "BUNDLE_ANALYZER=\"enabled\" next build --no-lint",
 		"build": "next build",
@@ -79,7 +78,18 @@
 	"pnpm": {
 		"overrides": {
 			"next": "$next"
-		}
+		},
+		"onlyBuiltDependencies": [
+			"@parcel/watcher",
+			"@tailwindcss/oxide",
+			"contentlayer",
+			"esbuild",
+			"node",
+			"protobufjs",
+			"sharp",
+			"simple-git-hooks",
+			"unrs-resolver"
+		]
 	},
 	"browserslist": {
 		"development": [
