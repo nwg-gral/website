@@ -1,4 +1,4 @@
-import { groupByToMap, isNonEmptyString } from "@acdh-oeaw/lib";
+import { groupByToMap, isNonEmptyArray, isNonEmptyString } from "@acdh-oeaw/lib";
 import type { MDXContent } from "mdx/types";
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
@@ -186,6 +186,22 @@ async function PublicationsSection(props: Readonly<PublicationsSectionProps>): P
 								<div className="prose">
 									<Content components={{ p: ActivityParagraph }} />
 								</div>
+								{isNonEmptyArray(publication.metadata.attachments) ? (
+									<div>
+										{publication.metadata.attachments.map((attachment, index) => {
+											return (
+												<a
+													// eslint-disable-next-line @eslint-react/no-array-index-key
+													key={index}
+													className="block py-1 font-display text-sm text-secondary underline underline-offset-2 transition hover:text-primary"
+													href={attachment.file}
+												>
+													{attachment.label}
+												</a>
+											);
+										})}
+									</div>
+								) : null}
 								{isNonEmptyString(publication.metadata.url) ? (
 									<a
 										className="block py-1 font-display text-sm text-secondary underline underline-offset-2 transition hover:text-primary"
