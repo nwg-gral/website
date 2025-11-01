@@ -1,9 +1,6 @@
 import { createConfig } from "@acdh-oeaw/content-lib";
 
-import { cooperationPartners } from "@/lib/content/collections/cooperation-partners";
 import { events } from "@/lib/content/collections/events";
-import { internationalAdvisoryBoardMembers } from "@/lib/content/collections/international-advisory-board-members";
-import { neworkPartners } from "@/lib/content/collections/network-partners";
 import { publications } from "@/lib/content/collections/publications";
 import { teamMembers } from "@/lib/content/collections/team-members";
 import { activitiesPage } from "@/lib/content/singletons/activities-page";
@@ -24,10 +21,7 @@ export const config = createConfig({
 		researchPage,
 		teamPage,
 
-		cooperationPartners,
 		events,
-		internationalAdvisoryBoardMembers,
-		neworkPartners,
 		publications,
 		teamMembers,
 	],

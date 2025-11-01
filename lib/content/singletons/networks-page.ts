@@ -45,16 +45,40 @@ export const networksPage = createCollection({
 		const cooperationPartners = {
 			...data.cooperationPartners,
 			text: await transformMdxField(data.cooperationPartners.text),
+			items: await Promise.all(
+				data.cooperationPartners.items.map(async (item) => {
+					return {
+						...item,
+						content: await transformMdxField(item.content),
+					};
+				}),
+			),
 		};
 
 		const internationalAdvisoryBoard = {
 			...data.internationalAdvisoryBoard,
 			text: await transformMdxField(data.internationalAdvisoryBoard.text),
+			items: await Promise.all(
+				data.internationalAdvisoryBoard.items.map(async (item) => {
+					return {
+						...item,
+						content: await transformMdxField(item.content),
+					};
+				}),
+			),
 		};
 
 		const networks = {
 			...data.networks,
 			text: await transformMdxField(data.networks.text),
+			items: await Promise.all(
+				data.networks.items.map(async (item) => {
+					return {
+						...item,
+						content: await transformMdxField(item.content),
+					};
+				}),
+			),
 		};
 
 		return {

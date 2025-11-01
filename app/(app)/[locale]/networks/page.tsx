@@ -9,9 +9,6 @@ import { PageTitle } from "@/components/page-title";
 import { Paragraph } from "@/components/paragraph";
 import { SectionTitle } from "@/components/section-title";
 import { WebsiteLink } from "@/components/website-link";
-import type { CooperationPartner } from "@/lib/content/client/cooperation-partners";
-import type { InternationalAdvisoryBoardMember } from "@/lib/content/client/international-advisory-board-members";
-import type { NetworkPartner } from "@/lib/content/client/network-partners";
 import { createClient } from "@/lib/content/create-client";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -32,12 +29,6 @@ export default async function NetworksPage(): Promise<ReactNode> {
 	const title = page.metadata.title;
 	const Content = page.content;
 
-	const [cooperationPartners, internationalAdvisoryBoard, networks] = await Promise.all([
-		client.collections.cooperationPartners.all(),
-		client.collections.internationalAdvisoryBoardMembers.all(),
-		client.collections.networkPartners.all(),
-	]);
-
 	return (
 		<Main>
 			<Container>
@@ -50,19 +41,19 @@ export default async function NetworksPage(): Promise<ReactNode> {
 				<div className="grid gap-16">
 					<PartnerSection
 						content={page.cooperationPartners.text}
-						partners={cooperationPartners}
+						partners={page.cooperationPartners.items}
 						title={page.cooperationPartners.title}
 					/>
 
 					<PartnerSection
 						content={page.internationalAdvisoryBoard.text}
-						partners={internationalAdvisoryBoard}
+						partners={page.internationalAdvisoryBoard.items}
 						title={page.internationalAdvisoryBoard.title}
 					/>
 
 					<PartnerSection
 						content={page.networks.text}
-						partners={networks}
+						partners={page.networks.items}
 						title={page.networks.title}
 					/>
 				</div>
@@ -73,7 +64,11 @@ export default async function NetworksPage(): Promise<ReactNode> {
 
 interface PartnerSectionProps {
 	content: MDXContent;
-	partners: Array<CooperationPartner | InternationalAdvisoryBoardMember | NetworkPartner>;
+	partners: Array<{
+		content: MDXContent;
+		name: string;
+		website: string;
+	}>;
 	title: ReactNode;
 }
 
@@ -99,9 +94,9 @@ function PartnerSection(props: Readonly<PartnerSectionProps>): ReactNode {
 						<Fragment key={index}>
 							<li className="grid content-between gap-6">
 								<article className="grid gap-4">
-									<h2 className="font-display text-2xl text-primary">{partner.metadata.name}</h2>
+									<h2 className="font-display text-2xl text-primary">{partner.name}</h2>
 									<div className="flex gap-12">
-										<WebsiteLink href={partner.metadata.website} name={partner.metadata.name} />
+										<WebsiteLink href={partner.website} name={partner.name} />
 										<div className="prose text-lg">
 											<Content />
 										</div>

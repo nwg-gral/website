@@ -2,10 +2,7 @@ import { withI18nPrefix } from "@acdh-oeaw/keystatic-lib";
 import { config as createConfig } from "@keystatic/core";
 
 import { env } from "@/config/env.config";
-import { createCooperationPartners } from "@/lib/content/keystatic/collections/cooperation-partners";
 import { createEvents } from "@/lib/content/keystatic/collections/events";
-import { createInternationalAdvisoryBoardMembers } from "@/lib/content/keystatic/collections/international-advisory-board-members";
-import { createNetworkPartners } from "@/lib/content/keystatic/collections/network-partners";
 import { createPublications } from "@/lib/content/keystatic/collections/publications";
 import { createTeamMembers } from "@/lib/content/keystatic/collections/team-members";
 import { createActivitiesPage } from "@/lib/content/keystatic/singletons/activities-page";
@@ -22,11 +19,7 @@ const locale = getIntlLanguage(defaultLocale);
 
 export const config = createConfig({
 	collections: {
-		[withI18nPrefix("cooperation-partners", locale)]: createCooperationPartners(locale),
 		[withI18nPrefix("events", locale)]: createEvents(locale),
-		[withI18nPrefix("international-advisory-board-members", locale)]:
-			createInternationalAdvisoryBoardMembers(locale),
-		[withI18nPrefix("network-partners", locale)]: createNetworkPartners(locale),
 		[withI18nPrefix("publications", locale)]: createPublications(locale),
 		[withI18nPrefix("team-members", locale)]: createTeamMembers(locale),
 	},
@@ -62,9 +55,6 @@ export const config = createConfig({
 		navigation: {
 			Data: [
 				withI18nPrefix("team-members", locale),
-				withI18nPrefix("cooperation-partners", locale),
-				withI18nPrefix("international-advisory-board-members", locale),
-				withI18nPrefix("network-partners", locale),
 				withI18nPrefix("events", locale),
 				withI18nPrefix("publications", locale),
 			],
