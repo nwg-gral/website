@@ -32,6 +32,7 @@ export function ContactForm(): ReactNode {
 			});
 			if (response.ok) {
 				setStatus({ status: "success" });
+				event.currentTarget.reset();
 			} else {
 				setStatus({
 					status: "error",
@@ -85,7 +86,7 @@ export function ContactForm(): ReactNode {
 					{t("submit")}
 				</button>
 			</div>
-			<div aria-live="polite">
+			<div aria-live="polite" className="flex justify-end text-right">
 				{status.status === "success" ? (
 					<span className="text-green-600">{t("success")}</span>
 				) : status.status === "error" ? (
