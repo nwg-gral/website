@@ -6,7 +6,7 @@ import {
 } from "@acdh-oeaw/keystatic-lib";
 import { fields, singleton } from "@keystatic/core";
 
-import { createPreviewUrl } from "@/lib/content/keystatic/utils/create-preview-url";
+// import { createPreviewUrl } from "@/lib/content/keystatic/utils/create-preview-url";
 import * as validation from "@/lib/content/keystatic/validation";
 
 export const createTeamPage = createSingleton("/team-page/", (paths, locale) => {
@@ -15,7 +15,7 @@ export const createTeamPage = createSingleton("/team-page/", (paths, locale) => 
 		path: paths.contentPath,
 		format: { contentField: "content" },
 		entryLayout: "form",
-		previewUrl: createPreviewUrl("/"),
+		// previewUrl: createPreviewUrl("/team"),
 		schema: {
 			title: fields.text({
 				label: "Title",

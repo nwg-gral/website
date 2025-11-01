@@ -1,7 +1,7 @@
 import { createContentFieldOptions, createLabel, createSingleton } from "@acdh-oeaw/keystatic-lib";
 import { fields, singleton } from "@keystatic/core";
 
-import { createPreviewUrl } from "@/lib/content/keystatic/utils/create-preview-url";
+// import { createPreviewUrl } from "@/lib/content/keystatic/utils/create-preview-url";
 
 export const createActivitiesPage = createSingleton("/activities-page/", (paths, locale) => {
 	return singleton({
@@ -9,7 +9,7 @@ export const createActivitiesPage = createSingleton("/activities-page/", (paths,
 		path: paths.contentPath,
 		format: { contentField: "content" },
 		entryLayout: "form",
-		previewUrl: createPreviewUrl("/"),
+		// previewUrl: createPreviewUrl("/activities"),
 		schema: {
 			title: fields.text({
 				label: "Title",
