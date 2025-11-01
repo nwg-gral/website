@@ -1,4 +1,4 @@
-import { createLabel, createSingleton } from "@acdh-oeaw/keystatic-lib";
+import { createContentFieldOptions, createLabel, createSingleton } from "@acdh-oeaw/keystatic-lib";
 import { fields, singleton } from "@keystatic/core";
 
 import { createPreviewUrl } from "@/lib/content/keystatic/utils/create-preview-url";
@@ -17,6 +17,15 @@ export const createActivitiesPage = createSingleton("/activities-page/", (paths,
 			}),
 			content: fields.mdx({
 				label: "Content",
+				options: {
+					...createContentFieldOptions(paths),
+					blockquote: false,
+					codeBlock: false,
+					heading: false,
+					image: false,
+					table: false,
+				},
+				components: {},
 			}),
 			events: fields.object(
 				{
@@ -27,6 +36,7 @@ export const createActivitiesPage = createSingleton("/activities-page/", (paths,
 					text: fields.mdx.inline({
 						label: "Text",
 						options: {
+							...createContentFieldOptions(paths),
 							blockquote: false,
 							codeBlock: false,
 							heading: false,
@@ -49,6 +59,7 @@ export const createActivitiesPage = createSingleton("/activities-page/", (paths,
 					text: fields.mdx.inline({
 						label: "Text",
 						options: {
+							...createContentFieldOptions(paths),
 							blockquote: false,
 							codeBlock: false,
 							heading: false,

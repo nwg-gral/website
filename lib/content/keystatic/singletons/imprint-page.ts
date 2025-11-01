@@ -1,4 +1,4 @@
-import { createLabel, createSingleton } from "@acdh-oeaw/keystatic-lib";
+import { createContentFieldOptions, createLabel, createSingleton } from "@acdh-oeaw/keystatic-lib";
 import { fields, singleton } from "@keystatic/core";
 
 import { createPreviewUrl } from "@/lib/content/keystatic/utils/create-preview-url";
@@ -17,6 +17,15 @@ export const createImprintPage = createSingleton("/imprint-page/", (paths, local
 			}),
 			content: fields.mdx({
 				label: "Content",
+				options: {
+					...createContentFieldOptions(paths),
+					blockquote: false,
+					codeBlock: false,
+					heading: false,
+					image: false,
+					table: false,
+				},
+				components: {},
 			}),
 		},
 	});

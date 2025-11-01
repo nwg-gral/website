@@ -1,4 +1,4 @@
-import { createCollection, createLabel } from "@acdh-oeaw/keystatic-lib";
+import { createCollection, createContentFieldOptions, createLabel } from "@acdh-oeaw/keystatic-lib";
 import { collection, fields } from "@keystatic/core";
 
 export const createNetworkPartners = createCollection("/network-partners/", (paths, locale) => {
@@ -23,6 +23,7 @@ export const createNetworkPartners = createCollection("/network-partners/", (pat
 			content: fields.mdx({
 				label: "Description",
 				options: {
+					...createContentFieldOptions(paths),
 					blockquote: false,
 					codeBlock: false,
 					heading: false,

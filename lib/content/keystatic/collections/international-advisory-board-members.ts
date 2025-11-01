@@ -1,4 +1,4 @@
-import { createCollection, createLabel } from "@acdh-oeaw/keystatic-lib";
+import { createCollection, createContentFieldOptions, createLabel } from "@acdh-oeaw/keystatic-lib";
 import { collection, fields } from "@keystatic/core";
 
 export const createInternationalAdvisoryBoardMembers = createCollection(
@@ -25,6 +25,7 @@ export const createInternationalAdvisoryBoardMembers = createCollection(
 				content: fields.mdx({
 					label: "Description",
 					options: {
+						...createContentFieldOptions(paths),
 						blockquote: false,
 						codeBlock: false,
 						heading: false,

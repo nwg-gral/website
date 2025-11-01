@@ -1,4 +1,9 @@
-import { createAssetOptions, createCollection, createLabel } from "@acdh-oeaw/keystatic-lib";
+import {
+	createAssetOptions,
+	createCollection,
+	createContentFieldOptions,
+	createLabel,
+} from "@acdh-oeaw/keystatic-lib";
 import { collection, fields } from "@keystatic/core";
 
 import * as validation from "@/lib/content/keystatic/validation";
@@ -51,6 +56,7 @@ export const createTeamMembers = createCollection("/team-members/", (paths, loca
 			content: fields.mdx({
 				label: "Description",
 				options: {
+					...createContentFieldOptions(paths),
 					blockquote: false,
 					codeBlock: false,
 					heading: false,

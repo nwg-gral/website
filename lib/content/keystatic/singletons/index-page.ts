@@ -1,4 +1,9 @@
-import { createLabel, createSingleton, withI18nPrefix } from "@acdh-oeaw/keystatic-lib";
+import {
+	createContentFieldOptions,
+	createLabel,
+	createSingleton,
+	withI18nPrefix,
+} from "@acdh-oeaw/keystatic-lib";
 import { fields, singleton } from "@keystatic/core";
 
 import { createPreviewUrl } from "@/lib/content/keystatic/utils/create-preview-url";
@@ -17,6 +22,15 @@ export const createIndexPage = createSingleton("/index-page/", (paths, locale) =
 			}),
 			content: fields.mdx({
 				label: "Content",
+				options: {
+					...createContentFieldOptions(paths),
+					blockquote: false,
+					codeBlock: false,
+					heading: false,
+					image: false,
+					table: false,
+				},
+				components: {},
 			}),
 			featured: fields.array(
 				fields.conditional(

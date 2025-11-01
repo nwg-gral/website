@@ -1,4 +1,9 @@
-import { createAssetOptions, createCollection, createLabel } from "@acdh-oeaw/keystatic-lib";
+import {
+	createAssetOptions,
+	createCollection,
+	createContentFieldOptions,
+	createLabel,
+} from "@acdh-oeaw/keystatic-lib";
 import { collection, fields } from "@keystatic/core";
 
 export const createPublications = createCollection("/publications/", (paths, locale) => {
@@ -47,6 +52,7 @@ export const createPublications = createCollection("/publications/", (paths, loc
 			content: fields.mdx({
 				label: "Description",
 				options: {
+					...createContentFieldOptions(paths),
 					blockquote: false,
 					codeBlock: false,
 					heading: false,
