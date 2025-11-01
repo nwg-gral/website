@@ -10,6 +10,7 @@ import {
 	createTypographicQuotesPlugin,
 } from "@/lib/content/mdx/remark-plugins";
 import { createRemarkRehypeOptions } from "@/lib/content/mdx/remark-rehype-options";
+import { getImageDimensions } from "@/lib/content/utils/get-image-dimensions";
 import { defaultLocale, getIntlLanguage } from "@/lib/i18n/locales";
 
 const locale = defaultLocale;
@@ -42,11 +43,25 @@ export const teamPage = createCollection({
 
 		const module = await transformMdxField(content);
 
+		const members = await Promise.all(
+			metadata.members.map(async (member) => {
+				const module = await transformMdxField(member.content);
+				const image = await getImageDimensions(member.image);
+
+				return {
+					...member,
+					content: module,
+					image,
+				};
+			}),
+		);
+
 		return {
 			id: item.id,
 			content: module,
 			metadata: {
 				...metadata,
+				members,
 			},
 		};
 	},

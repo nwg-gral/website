@@ -26,7 +26,7 @@ export default async function NetworksPage(): Promise<ReactNode> {
 
 	const page = await client.singletons.networksPage.get();
 
-	const title = page.metadata.title;
+	const { title, cooperationPartners, internationalAdvisoryBoard, networks } = page.metadata;
 	const Content = page.content;
 
 	return (
@@ -40,21 +40,21 @@ export default async function NetworksPage(): Promise<ReactNode> {
 
 				<div className="grid gap-16">
 					<PartnerSection
-						content={page.cooperationPartners.text}
-						partners={page.cooperationPartners.items}
-						title={page.cooperationPartners.title}
+						content={cooperationPartners.text}
+						partners={cooperationPartners.items}
+						title={cooperationPartners.title}
 					/>
 
 					<PartnerSection
-						content={page.internationalAdvisoryBoard.text}
-						partners={page.internationalAdvisoryBoard.items}
-						title={page.internationalAdvisoryBoard.title}
+						content={internationalAdvisoryBoard.text}
+						partners={internationalAdvisoryBoard.items}
+						title={internationalAdvisoryBoard.title}
 					/>
 
 					<PartnerSection
-						content={page.networks.text}
-						partners={page.networks.items}
-						title={page.networks.title}
+						content={networks.text}
+						partners={networks.items}
+						title={networks.title}
 					/>
 				</div>
 			</Container>

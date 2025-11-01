@@ -4,7 +4,6 @@ import { config as createConfig } from "@keystatic/core";
 import { env } from "@/config/env.config";
 import { createEvents } from "@/lib/content/keystatic/collections/events";
 import { createPublications } from "@/lib/content/keystatic/collections/publications";
-import { createTeamMembers } from "@/lib/content/keystatic/collections/team-members";
 import { createActivitiesPage } from "@/lib/content/keystatic/singletons/activities-page";
 import { createContactPage } from "@/lib/content/keystatic/singletons/contact-page";
 import { createImprintPage } from "@/lib/content/keystatic/singletons/imprint-page";
@@ -21,7 +20,6 @@ export const config = createConfig({
 	collections: {
 		[withI18nPrefix("events", locale)]: createEvents(locale),
 		[withI18nPrefix("publications", locale)]: createPublications(locale),
-		[withI18nPrefix("team-members", locale)]: createTeamMembers(locale),
 	},
 	singletons: {
 		[withI18nPrefix("activities-page", locale)]: createActivitiesPage(locale),
@@ -53,11 +51,7 @@ export const config = createConfig({
 			name: "GraL Website",
 		},
 		navigation: {
-			Data: [
-				withI18nPrefix("team-members", locale),
-				withI18nPrefix("events", locale),
-				withI18nPrefix("publications", locale),
-			],
+			Data: [withI18nPrefix("events", locale), withI18nPrefix("publications", locale)],
 			Pages: [
 				withI18nPrefix("index-page", locale),
 				withI18nPrefix("team-page", locale),

@@ -2,7 +2,6 @@ import { createConfig } from "@acdh-oeaw/content-lib";
 
 import { events } from "@/lib/content/collections/events";
 import { publications } from "@/lib/content/collections/publications";
-import { teamMembers } from "@/lib/content/collections/team-members";
 import { activitiesPage } from "@/lib/content/singletons/activities-page";
 import { contactPage } from "@/lib/content/singletons/contact-page";
 import { imprintPage } from "@/lib/content/singletons/imprint-page";
@@ -23,6 +22,5 @@ export const config = createConfig({
 
 		events,
 		publications,
-		teamMembers,
 	],
 });

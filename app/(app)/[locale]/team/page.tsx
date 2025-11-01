@@ -10,7 +10,6 @@ import { Main } from "@/components/main";
 import { PageTitle } from "@/components/page-title";
 import { Paragraph } from "@/components/paragraph";
 import { WebsiteLink } from "@/components/website-link";
-import type { TeamMember } from "@/lib/content/client/team-members";
 import { createClient } from "@/lib/content/create-client";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -31,10 +30,10 @@ export default async function TeamPage(): Promise<ReactNode> {
 	const title = page.metadata.title;
 	const Content = page.content;
 
-	const team = await client.collections.teamMembers.all();
+	const team = page.metadata.members;
 
-	function getFullName(person: TeamMember) {
-		const fullName = [person.metadata.title, person.metadata.firstName, person.metadata.name]
+	function getFullName(person: (typeof team)[number]) {
+		const fullName = [person.title, person.firstName, person.name]
 			.filter(isNonEmptyString)
 			.join(" ");
 
@@ -53,38 +52,39 @@ export default async function TeamPage(): Promise<ReactNode> {
 				</div>
 
 				<ul className="grid gap-12" role="list">
-					{team.map((person) => {
+					{team.map((person, index) => {
 						const fullName = getFullName(person);
 
 						const Content = person.content;
 
 						return (
-							<Fragment key={person.id}>
+							// eslint-disable-next-line @eslint-react/no-array-index-key
+							<Fragment key={index}>
 								<li>
 									<article className="grid gap-6">
 										<header className="flex justify-between">
 											<div className="grid content-start gap-6">
 												<div>
 													<span className="border-b border-primary p-0.5 font-display">
-														{person.metadata.role}
+														{person.role}
 													</span>
 												</div>
 												<h2 className="font-display text-[1.5rem] leading-[1.75rem] text-primary sm:text-[1.75rem] sm:leading-[2.125rem]">
 													{fullName}
 												</h2>
 												<div className="flex gap-4">
-													{/* {isNonEmptyString(person.metadata.cv) ? (
-														<CVLink href={person.metadata.cv} name={fullName} />
+													{/* {isNonEmptyString(person.cv) ? (
+														<CVLink href={person.cv} name={fullName} />
 													) : null} */}
-													{isNonEmptyString(person.metadata.website) ? (
-														<WebsiteLink href={person.metadata.website} name={fullName} />
+													{isNonEmptyString(person.website) ? (
+														<WebsiteLink href={person.website} name={fullName} />
 													) : null}
-													{isNonEmptyString(person.metadata.email) ? (
-														<EmailLink href={`mailto:${person.metadata.email}`} name={fullName} />
+													{isNonEmptyString(person.email) ? (
+														<EmailLink href={`mailto:${person.email}`} name={fullName} />
 													) : null}
 												</div>
 											</div>
-											<Avatar src={person.metadata.image} />
+											<Avatar src={person.image} />
 										</header>
 										<div className="prose max-w-xl space-y-6 text-lg">
 											<Content components={{ p: Paragraph }} />

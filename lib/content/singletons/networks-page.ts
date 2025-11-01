@@ -86,10 +86,10 @@ export const networksPage = createCollection({
 			content: module,
 			metadata: {
 				...metadata,
+				cooperationPartners,
+				internationalAdvisoryBoard,
+				networks,
 			},
-			cooperationPartners,
-			internationalAdvisoryBoard,
-			networks,
 		};
 	},
 });
