@@ -64,7 +64,7 @@
 		"@acdh-oeaw/eslint-config-react": "^3.0.2",
 		"@acdh-oeaw/eslint-config-tailwindcss": "^3.0.2",
 		"@acdh-oeaw/prettier-config": "^2.0.1",
-		"@acdh-oeaw/stylelint-config": "^2.3.1",
+		"@acdh-oeaw/stylelint-config": "^2.3.2",
 		"@acdh-oeaw/tsconfig": "^1.5.1",
 		"@next/eslint-plugin-next": "^16.0.1",
 		"@tailwindcss/postcss": "^4.1.16",

@@ -111,8 +111,8 @@ importers:
         specifier: ^2.0.1
         version: 2.0.1(prettier@3.6.2)
       '@acdh-oeaw/stylelint-config':
-        specifier: ^2.3.1
-        version: 2.3.1(postcss-html@1.8.0)(stylelint-order@7.0.0(stylelint@16.25.0(typescript@5.9.3)))(stylelint@16.25.0(typescript@5.9.3))
+        specifier: ^2.3.2
+        version: 2.3.2(postcss-html@1.8.0)(stylelint-order@7.0.0(stylelint@16.25.0(typescript@5.9.3)))(stylelint@16.25.0(typescript@5.9.3))
       '@acdh-oeaw/tsconfig':
         specifier: ^1.5.1
         version: 1.5.1(typescript@5.9.3)
@@ -252,8 +252,8 @@ packages:
     peerDependencies:
       prettier: 3.x
 
-  '@acdh-oeaw/stylelint-config@2.3.1':
-    resolution: {integrity: sha512-SdkhklRnt996FVcMFkJaC8Q9lsiVlK1AcsYIfdMZLfkxcXOJYgGZmBgEjafGUZS4B2ra7/dSC6gcGmAYaP8bmA==}
+  '@acdh-oeaw/stylelint-config@2.3.2':
+    resolution: {integrity: sha512-1BetwUt3INSJZmIjaSYPIlpkSFJsJoD7HEUxS7nxB6zukG5Yho1/DJn/V+FryTOdl3EPAucGYR+bKEsiMeOVIQ==}
     peerDependencies:
       stylelint: '>=16.23'
 
@@ -4593,7 +4593,7 @@ snapshots:
     dependencies:
       prettier: 3.6.2
 
-  '@acdh-oeaw/stylelint-config@2.3.1(postcss-html@1.8.0)(stylelint-order@7.0.0(stylelint@16.25.0(typescript@5.9.3)))(stylelint@16.25.0(typescript@5.9.3))':
+  '@acdh-oeaw/stylelint-config@2.3.2(postcss-html@1.8.0)(stylelint-order@7.0.0(stylelint@16.25.0(typescript@5.9.3)))(stylelint@16.25.0(typescript@5.9.3))':
     dependencies:
       stylelint: 16.25.0(typescript@5.9.3)
       stylelint-config-html: 1.1.0(postcss-html@1.8.0)(stylelint@16.25.0(typescript@5.9.3))
