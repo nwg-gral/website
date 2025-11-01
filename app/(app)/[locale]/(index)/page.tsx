@@ -19,7 +19,7 @@ export default async function IndexPage(): Promise<ReactNode> {
 		<Main>
 			<Container>
 				<div className="grid gap-8 sm:grid-cols-[3fr_1fr]">
-					<div className="grid gap-8">
+					<div className="grid gap-8 sm:gap-y-16">
 						<PageTitle>{title}</PageTitle>
 
 						<div className="prose space-y-6">
