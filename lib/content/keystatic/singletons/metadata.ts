@@ -32,6 +32,11 @@ export const createMetadata = createSingleton("/metadata/", (paths, locale) => {
 				validation: { isRequired: true },
 				...createAssetOptions(paths.assetPath),
 			}),
+			bmLogo: fields.image({
+				label: "Logo Bundesministerium",
+				validation: { isRequired: true },
+				...createAssetOptions(paths.assetPath),
+			}),
 			manifest: fields.object(
 				{
 					name: fields.text({

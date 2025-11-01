@@ -2,7 +2,6 @@ import Image from "next/image";
 import type { ReactNode } from "react";
 
 import { useMetadata } from "@/lib/i18n/metadata";
-import bmLogo from "@/public/assets/images/logo-bm.jpg";
 
 export function PageFooter(): ReactNode {
 	const metadata = useMetadata();
@@ -30,7 +29,12 @@ export function PageFooter(): ReactNode {
 					</span>
 				</div>
 
-				<Image alt="" className="h-32 w-32 object-contain sm:hidden" src={bmLogo} />
+				<Image
+					alt=""
+					className="h-32 w-32 object-contain sm:hidden"
+					src={metadata.bmLogo}
+					unoptimized={true}
+				/>
 			</div>
 		</footer>
 	);

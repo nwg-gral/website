@@ -7,7 +7,6 @@ import { NavLink } from "@/components/nav-link";
 import { useMetadata } from "@/lib/i18n/metadata";
 import instagram from "@/public/assets/images/icon-instagram.svg";
 import gralLogo from "@/public/assets/images/logo.svg";
-import bmLogo from "@/public/assets/images/logo-bm.jpg";
 
 export function PageHeader(): ReactNode {
 	const t = useTranslations("PageHeader");
@@ -37,8 +36,9 @@ export function PageHeader(): ReactNode {
 				<Image
 					alt=""
 					className="hidden w-full object-contain sm:block"
-					src={bmLogo}
+					src={metadata.bmLogo}
 					sizes="10rem"
+					unoptimized={true}
 				/>
 			</div>
 
