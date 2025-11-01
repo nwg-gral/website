@@ -9,14 +9,17 @@
 		},
 		"read-more": "Weiterlesen"
 	},
-	"ContactPage": {
-		"meta": {
-			"title": "Kontakt"
-		},
+	"ContactForm": {
 		"subject": "Ihr Anliegen",
 		"email": "Ihre E-Mail-Adresse",
 		"message": "Text",
-		"submit": "Absenden"
+		"submit": "Absenden",
+		"success": "Nachricht erfolgreich gesendet."
+	},
+	"ContactPage": {
+		"meta": {
+			"title": "Kontakt"
+		}
 	},
 	"CVLink": {
 		"cv": "Curriculum vitae von {name}"
