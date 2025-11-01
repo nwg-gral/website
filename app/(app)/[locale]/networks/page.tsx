@@ -6,7 +6,6 @@ import { Fragment, type ReactNode } from "react";
 import { Container } from "@/components/container";
 import { Main } from "@/components/main";
 import { PageTitle } from "@/components/page-title";
-import { Paragraph } from "@/components/paragraph";
 import { SectionTitle } from "@/components/section-title";
 import { WebsiteLink } from "@/components/website-link";
 import { createClient } from "@/lib/content/create-client";
@@ -34,8 +33,8 @@ export default async function NetworksPage(): Promise<ReactNode> {
 			<Container>
 				<PageTitle>{title}</PageTitle>
 
-				<div className="prose space-y-6">
-					<Content components={{ p: Paragraph }} />
+				<div className="drop-caps prose space-y-6">
+					<Content />
 				</div>
 
 				<div className="grid gap-16">
@@ -81,8 +80,8 @@ function PartnerSection(props: Readonly<PartnerSectionProps>): ReactNode {
 		<section className="grid gap-4">
 			<SectionTitle>{title}</SectionTitle>
 
-			<div className="prose space-y-6">
-				<Content components={{ p: Paragraph }} />
+			<div className="drop-caps prose space-y-6">
+				<Content />
 			</div>
 
 			<ul className="grid gap-12 sm:grid-cols-2" role="list">
@@ -97,7 +96,7 @@ function PartnerSection(props: Readonly<PartnerSectionProps>): ReactNode {
 									<h2 className="font-display text-2xl text-primary">{partner.name}</h2>
 									<div className="flex gap-12">
 										<WebsiteLink href={partner.website} name={partner.name} />
-										<div className="prose text-lg">
+										<div className="prose text-lg prose-sm">
 											<Content />
 										</div>
 									</div>

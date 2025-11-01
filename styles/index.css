@@ -27,10 +27,58 @@
 }
 
 @utility prose {
+	color: var(--color-secondary);
+	font-size: 1rem;
+	font-family: var(--font-body);
+	line-height: 1.25rem;
+	letter-spacing: 0.75px;
+
+	@variant sm {
+		font-size: 1.25rem;
+		line-height: 1.4375rem;
+	}
+
+	* + * {
+		margin-top: 0.5em;
+	}
+
+	a {
+		text-decoration: underline;
+		text-underline-offset: 0.15em;
+	}
+
+	a:hover {
+		text-decoration: dotted;
+	}
+
 	li {
 		margin-left: 1.5em;
 		padding-left: 0.25em;
 		list-style: disc;
+	}
+}
+
+@utility drop-caps {
+	p::first-letter {
+		float: left;
+		margin-right: 0.25rem;
+		color: var(--color-primary);
+		font-size: 3.375rem;
+		font-family: var(--font-display);
+		line-height: 0;
+
+		@variant sm {
+			font-size: 3.8125rem;
+		}
+	}
+}
+
+@utility prose-sm {
+	line-height: 1.375rem;
+
+	@variant sm {
+		font-size: 1.0625rem;
+		line-height: 1.4375rem;
 	}
 }
 

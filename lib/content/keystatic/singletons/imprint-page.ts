@@ -9,7 +9,7 @@ export const createImprintPage = createSingleton("/imprint-page/", (paths, local
 		path: paths.contentPath,
 		format: { contentField: "content" },
 		entryLayout: "form",
-		// previewUrl: createPreviewUrl("/imprint"),
+		// previewUrl: createPreviewUrl("/contact"),
 		schema: {
 			title: fields.text({
 				label: "Title",

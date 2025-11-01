@@ -7,7 +7,6 @@ import { Container } from "@/components/container";
 import { ImprintSection } from "@/components/imprint-section";
 import { Main } from "@/components/main";
 import { PageTitle } from "@/components/page-title";
-import { Paragraph } from "@/components/paragraph";
 import { createClient } from "@/lib/content/create-client";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -34,7 +33,7 @@ export default async function ContactPage(): Promise<ReactNode> {
 				<PageTitle>{title}</PageTitle>
 
 				<div className="prose space-y-6">
-					<Content components={{ p: Paragraph }} />
+					<Content />
 				</div>
 
 				<ContactForm />

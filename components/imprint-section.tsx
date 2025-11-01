@@ -14,7 +14,7 @@ export async function ImprintSection(): Promise<ReactNode> {
 	return (
 		<section className="grid gap-4">
 			<SectionTitle>{title}</SectionTitle>
-			<div className="prose">
+			<div className="prose prose-sm">
 				<Content />
 			</div>
 		</section>

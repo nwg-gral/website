@@ -79,7 +79,7 @@ async function FeaturedItems(): Promise<ReactNode> {
 									{item.metadata.title}
 								</Link>
 							</h3>
-							<div className="prose line-clamp-3">
+							<div className="prose line-clamp-3 prose-sm">
 								<Content />
 							</div>
 						</article>

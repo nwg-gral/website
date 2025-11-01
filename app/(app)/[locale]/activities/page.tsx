@@ -8,7 +8,6 @@ import { Container } from "@/components/container";
 import { Link } from "@/components/link";
 import { Main } from "@/components/main";
 import { PageTitle } from "@/components/page-title";
-import { Paragraph } from "@/components/paragraph";
 import { SectionParagraph } from "@/components/section-paragraph";
 import { SectionTitle } from "@/components/section-title";
 import { createClient } from "@/lib/content/create-client";
@@ -36,8 +35,8 @@ export default async function ActivitiesPage(): Promise<ReactNode> {
 			<Container>
 				<PageTitle>{title}</PageTitle>
 
-				<div className="prose space-y-6">
-					<Content components={{ p: Paragraph }} />
+				<div className="drop-caps prose space-y-6">
+					<Content />
 				</div>
 
 				<div className="grid gap-16">
@@ -85,8 +84,8 @@ async function EventsSection(props: Readonly<EventsSectionProps>): Promise<React
 			{/* <SectionTitle>{title}</SectionTitle> */}
 			<h2 className="sr-only">{title}</h2>
 
-			<div className="prose space-y-6">
-				<Content components={{ p: Paragraph }} />
+			<div className="drop-caps prose space-y-6">
+				<Content />
 			</div>
 
 			{sorted.map((year) => {
@@ -113,8 +112,8 @@ async function EventsSection(props: Readonly<EventsSectionProps>): Promise<React
 													</span>
 												</Link>
 											</h4>
-											<div className="prose">
-												<Content components={{ p: ActivityParagraph }} />
+											<div className="prose prose-sm">
+												<Content />
 											</div>
 											<Link
 												className="block py-1 font-display text-sm text-secondary underline underline-offset-2 transition hover:text-primary"
@@ -183,8 +182,8 @@ async function PublicationsSection(props: Readonly<PublicationsSectionProps>): P
 										</span>
 									)}
 								</h4>
-								<div className="prose">
-									<Content components={{ p: ActivityParagraph }} />
+								<div className="prose prose-sm">
+									<Content />
 								</div>
 								{isNonEmptyArray(publication.metadata.attachments) ? (
 									<div>
@@ -216,19 +215,5 @@ async function PublicationsSection(props: Readonly<PublicationsSectionProps>): P
 				})}
 			</ul>
 		</section>
-	);
-}
-
-interface ActivityParagraphProps {
-	children?: ReactNode;
-}
-
-function ActivityParagraph(props: Readonly<ActivityParagraphProps>): ReactNode {
-	const { children } = props;
-
-	return (
-		<p className="font-body text-[1rem] leading-[1.375rem] tracking-[0.75px] text-secondary sm:text-[1.0625rem] sm:leading-[1.4375rem]">
-			{children}
-		</p>
 	);
 }

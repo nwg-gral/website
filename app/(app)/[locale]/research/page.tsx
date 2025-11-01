@@ -5,7 +5,6 @@ import type { ReactNode } from "react";
 import { Container } from "@/components/container";
 import { Main } from "@/components/main";
 import { PageTitle } from "@/components/page-title";
-import { Paragraph } from "@/components/paragraph";
 import { SectionHeading } from "@/components/section-heading";
 import { SectionParagraph } from "@/components/section-paragraph";
 import { SectionTitle } from "@/components/section-title";
@@ -34,8 +33,8 @@ export default async function ResearchPage(): Promise<ReactNode> {
 			<Container size="sm">
 				<PageTitle>{title}</PageTitle>
 
-				<div className="prose space-y-6">
-					<Content components={{ p: Paragraph }} />
+				<div className="drop-caps prose space-y-6">
+					<Content />
 				</div>
 
 				{page.cards.map((card, index) => {

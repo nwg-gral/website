@@ -7,7 +7,6 @@ import type { ReactNode } from "react";
 import { Container } from "@/components/container";
 import { Main } from "@/components/main";
 import { PageTitle } from "@/components/page-title";
-import { ParagraphNoDropCaps } from "@/components/paragraph";
 import { createClient } from "@/lib/content/create-client";
 
 interface EventPageProps extends PageProps<"/[locale]/events/[id]"> {}
@@ -52,12 +51,12 @@ export default async function EventPage(props: Readonly<EventPageProps>): Promis
 				<PageTitle>{title}</PageTitle>
 
 				<div className="prose space-y-6">
-					<Content components={{ p: ParagraphNoDropCaps }} />
+					<Content />
 				</div>
 
 				{isNonEmptyString(event.metadata.url) ? (
 					<a
-						className="block py-1 font-display text-sm text-secondary underline underline-offset-2 transition hover:text-primary"
+						className="block py-1 font-display text-secondary underline underline-offset-2 transition hover:text-primary"
 						href={event.metadata.url}
 					>
 						{t("read-more")}

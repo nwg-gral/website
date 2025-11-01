@@ -4,7 +4,6 @@ import { Container } from "@/components/container";
 import { FeaturedContent } from "@/components/featured-content";
 import { Main } from "@/components/main";
 import { PageTitle } from "@/components/page-title";
-import { Paragraph } from "@/components/paragraph";
 import { createClient } from "@/lib/content/create-client";
 
 export default async function IndexPage(): Promise<ReactNode> {
@@ -22,8 +21,8 @@ export default async function IndexPage(): Promise<ReactNode> {
 					<div className="grid gap-8 sm:gap-y-16">
 						<PageTitle>{title}</PageTitle>
 
-						<div className="prose space-y-6">
-							<Content components={{ p: Paragraph }} />
+						<div className="drop-caps prose space-y-6">
+							<Content />
 						</div>
 					</div>
 

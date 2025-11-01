@@ -8,7 +8,6 @@ import { Container } from "@/components/container";
 import { EmailLink } from "@/components/email-link";
 import { Main } from "@/components/main";
 import { PageTitle } from "@/components/page-title";
-import { Paragraph } from "@/components/paragraph";
 import { WebsiteLink } from "@/components/website-link";
 import { createClient } from "@/lib/content/create-client";
 
@@ -47,8 +46,8 @@ export default async function TeamPage(): Promise<ReactNode> {
 					{title} {team.map(getFullName).join(", ")}
 				</PageTitle>
 
-				<div className="prose space-y-6">
-					<Content components={{ p: Paragraph }} />
+				<div className="drop-caps prose space-y-6">
+					<Content />
 				</div>
 
 				<ul className="grid gap-12" role="list">
@@ -86,8 +85,8 @@ export default async function TeamPage(): Promise<ReactNode> {
 											</div>
 											<Avatar src={person.image} />
 										</header>
-										<div className="prose max-w-xl space-y-6 text-lg">
-											<Content components={{ p: Paragraph }} />
+										<div className="drop-caps prose max-w-xl space-y-6">
+											<Content />
 										</div>
 									</article>
 								</li>
