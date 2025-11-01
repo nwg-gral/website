@@ -32,8 +32,10 @@ export function PageFooter(): ReactNode {
 				<Image
 					alt=""
 					className="h-32 w-32 object-contain sm:hidden"
+					height={567}
 					src={metadata.bmLogo}
 					unoptimized={true}
+					width={850}
 				/>
 			</div>
 		</footer>

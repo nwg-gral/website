@@ -36,9 +36,11 @@ export function PageHeader(): ReactNode {
 				<Image
 					alt=""
 					className="hidden w-full object-contain sm:block"
+					height={567}
 					src={metadata.bmLogo}
 					sizes="10rem"
 					unoptimized={true}
+					width={850}
 				/>
 			</div>
 
