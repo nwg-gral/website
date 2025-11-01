@@ -1,0 +1,26 @@
+{
+  "title": "Nachwuchsgruppe \"Gelingensbedingungen rassismussensibler Lehrer:innenbildung\" (GraL)",
+  "description": "Nachwuchsgruppe \"Gelingensbedingungen rassismussensibler Lehrer:innenbildung\" (GraL)",
+  "creator": "Nachwuchsgruppe \"Gelingensbedingungen rassismussensibler Lehrer:innenbildung\" (GraL)",
+  "address": "Universität Bielefeld | Fakultät für Erziehungswissenschaft, AG 10: Migrationspädagogik und Rassismuskritik | Universitätsstraße 25, 33615 Bielefeld",
+  "logo": "/assets/content/assets/de/metadata/logo.svg",
+  "manifest": {
+    "name": "Nachwuchsgruppe \"Gelingensbedingungen rassismussensibler Lehrer:innenbildung\" (GraL)",
+    "short-name": "GraL",
+    "description": "Nachwuchsgruppe \"Gelingensbedingungen rassismussensibler Lehrer:innenbildung\" (GraL)"
+  },
+  "social": [
+    {
+      "kind": "instagram",
+      "href": "https://instagram.com/gral__bielefelduniversity/"
+    },
+    {
+      "kind": "website",
+      "href": "https://www.nwg-gral.de"
+    },
+    {
+      "kind": "email",
+      "href": "gral@uni-bielefeld.de"
+    }
+  ]
+}

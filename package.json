@@ -6,145 +6,109 @@
 	"engines": {
 		"node": "22.x"
 	},
-	"packageManager": "pnpm@10.17.1",
+	"packageManager": "pnpm@10.20.0",
 	"scripts": {
-		"analyze": "BUNDLE_ANALYZER=\"enabled\" next build --no-lint",
-		"build": "next build",
-		"dev": "next dev",
-		"dev:cms": "decap-server",
-		"format:check": "prettier . \"!./content/**\" --cache --check --ignore-path ./.gitignore",
+		"app:build": "next build --experimental-next-config-strip-types",
+		"app:dev": "next dev --experimental-next-config-strip-types",
+		"build": "run-s content:build app:build",
+		"content:build": "dotenv -c -- tsx ./scripts/generate-content.ts build",
+		"content:dev": "dotenv -c -- tsx ./scripts/generate-content.ts watch",
+		"dev": "concurrently --kill-others --names \"content,app\" --prefix-colors \"auto\" \"pnpm:content:dev\" \"pnpm:app:dev\"",
+		"format:check": "prettier . --cache --cache-location ./.prettiercache --check",
 		"format:fix": "pnpm run format:check --write",
 		"lint:check": "run-p --continue-on-error \"lint:*:check\"",
 		"lint:fix": "run-p --continue-on-error \"lint:*:fix\"",
-		"lint:code:check": "eslint . --cache --ignore-path ./.gitignore",
+		"lint:code:check": "eslint . --flag unstable_native_nodejs_ts_config",
 		"lint:code:fix": "pnpm run lint:code:check --fix",
-		"lint:styles:check": "stylelint \"./**/*.css\" --cache --ignore-path ./.gitignore",
+		"lint:styles:check": "stylelint \"./styles/**/*.css\" --cache --ignore-path ./.gitignore",
 		"lint:styles:fix": "pnpm run lint:styles:check --fix",
-		"prepare": "run-s setup",
-		"setup": "is-ci || simple-git-hooks",
-		"start": "next start",
-		"test": "exit 0",
+		"preinstall": "npx only-allow pnpm",
+		"prepare": "run-s setup types:prepare",
+		"setup": "is-in-ci || simple-git-hooks",
+		"start": "next start --experimental-next-config-strip-types",
 		"types:check": "tsc --noEmit",
-		"validate": "run-p format:check lint:check types:check test"
+		"types:prepare": "next typegen"
 	},
 	"dependencies": {
-		"@sendgrid/mail": "^8.1.0",
-		"@stefanprobst/lib": "^0.1.3",
-		"@stefanprobst/netlify-cms-oauth-client": "^0.2.0",
-		"@t3-oss/env-nextjs": "^0.7.3",
-		"clsx": "^2.1.0",
-		"date-fns": "^3.2.0",
-		"next": "^14.0.4",
-		"next-intl": "3.4.2",
-		"react": "^18.2.0",
-		"react-dom": "^18.2.0",
+		"@acdh-oeaw/keystatic-lib": "^0.8.0",
+		"@acdh-oeaw/lib": "^0.3.5",
+		"@acdh-oeaw/mdx-lib": "^0.1.4",
+		"@acdh-oeaw/validate-env": "^0.1.1",
+		"@keystatic/core": "^0.5.48",
+		"@keystatic/next": "^5.0.4",
+		"@mdx-js/mdx": "^3.1.1",
+		"@sindresorhus/slugify": "^3.0.0",
+		"@valibot/i18n": "^1.0.0",
+		"clsx": "^2.1.1",
+		"date-fns": "^4.1.0",
+		"image-size": "^2.0.2",
+		"next": "^16.0.1",
+		"next-intl": "^4.4.0",
+		"react": "^19.2.0",
+		"react-dom": "^19.2.0",
 		"react-schemaorg": "^2.0.0",
-		"server-only": "^0.0.1",
-		"sharp": "0.33.1",
-		"zod": "^3.22.4"
+		"rehype-slug": "^6.0.0",
+		"remark-frontmatter": "^5.0.0",
+		"remark-gfm": "^4.0.1",
+		"remark-smartypants": "^3.0.2",
+		"sharp": "^0.34.4",
+		"unified": "^11.0.5",
+		"unist-util-visit": "^5.0.0",
+		"valibot": "^1.1.0",
+		"vfile": "^6.0.3"
 	},
 	"devDependencies": {
-		"@commitlint/cli": "^18.4.4",
-		"@stefanprobst/commitlint-config": "^1.0.3",
-		"@stefanprobst/eslint-config": "^1.2.1",
-		"@stefanprobst/eslint-config-next": "^7.0.10",
-		"@stefanprobst/eslint-config-react": "^1.0.9",
-		"@stefanprobst/prettier-config": "^4.0.1",
-		"@stefanprobst/stylelint-config": "^5.0.1",
-		"@stefanprobst/tsconfig": "^3.0.4",
-		"@tailwindcss/typography": "^0.5.10",
-		"@types/node": "^20.11.0",
-		"@types/react": "^18.2.47",
-		"@types/react-dom": "^18.2.18",
-		"autoprefixer": "^10.4.16",
-		"contentlayer": "^0.3.4",
-		"decap-server": "^3.0.1",
-		"eslint": "^8.56.0",
-		"eslint-plugin-tailwindcss": "^3.13.1",
-		"hash-wasm": "^4.11.0",
-		"image-size": "^1.1.1",
-		"is-ci": "^3.0.1",
-		"lint-staged": "^15.2.0",
-		"next-contentlayer": "^0.3.4",
-		"npm-run-all2": "^6.1.1",
-		"postcss": "^8.4.33",
-		"prettier": "^3.2.1",
-		"simple-git-hooks": "^2.9.0",
-		"stylelint": "^16.1.0",
-		"tailwindcss": "^3.4.1",
-		"tailwindcss-animate": "^1.0.7",
-		"typescript": "^5.3.3"
-	},
-	"pnpm": {
-		"overrides": {
-			"next": "$next"
-		},
-		"onlyBuiltDependencies": [
-			"@parcel/watcher",
-			"@tailwindcss/oxide",
-			"contentlayer",
-			"esbuild",
-			"node",
-			"protobufjs",
-			"sharp",
-			"simple-git-hooks",
-			"unrs-resolver"
-		]
-	},
-	"browserslist": {
-		"development": [
-			"last 1 chrome version",
-			"last 1 firefox version",
-			"last 1 safari version"
-		],
-		"production": [
-			">=0.75%",
-			"not dead",
-			"not op_mini all"
-		]
-	},
-	"commitlint": {
-		"extends": "@stefanprobst/commitlint-config"
-	},
-	"eslintConfig": {
-		"extends": [
-			"@stefanprobst/eslint-config",
-			"@stefanprobst/eslint-config-react",
-			"@stefanprobst/eslint-config-next",
-			"plugin:eslint-plugin-tailwindcss/recommended"
-		],
-		"settings": {
-			"tailwindcss": {
-				"callees": [
-					"cn"
-				]
-			}
-		}
+		"@acdh-oeaw/content-lib": "^0.1.2",
+		"@acdh-oeaw/eslint-config": "^2.0.10",
+		"@acdh-oeaw/eslint-config-next": "^4.0.3",
+		"@acdh-oeaw/eslint-config-react": "^3.0.2",
+		"@acdh-oeaw/eslint-config-tailwindcss": "^3.0.2",
+		"@acdh-oeaw/prettier-config": "^2.0.1",
+		"@acdh-oeaw/stylelint-config": "^2.3.1",
+		"@acdh-oeaw/tsconfig": "^1.5.1",
+		"@next/eslint-plugin-next": "^16.0.1",
+		"@tailwindcss/postcss": "^4.1.16",
+		"@types/hast": "^3.0.4",
+		"@types/mdx": "^2.0.13",
+		"@types/node": "^22.18.13",
+		"@types/react": "^19.2.2",
+		"@types/react-dom": "^19.2.2",
+		"concurrently": "^9.2.1",
+		"dotenv-cli": "^11.0.0",
+		"eslint": "^9.38.0",
+		"eslint-config-flat-gitignore": "^2.1.0",
+		"globals": "^16.4.0",
+		"is-in-ci": "^2.0.0",
+		"npm-run-all2": "^8.0.4",
+		"prettier": "^3.6.2",
+		"schema-dts": "^1.1.5",
+		"simple-git-hooks": "^2.13.1",
+		"stylelint": "^16.25.0",
+		"tailwindcss": "^4.1.16",
+		"tsx": "^4.20.6",
+		"typescript": "^5.9.3"
 	},
 	"lint-staged": {
-		"*.@(cjs|js|mjs|ts|tsx)": [
-			"eslint --cache --fix",
-			"prettier --cache --write"
+		"*.@(js|ts|tsx)": [
+			"eslint --fix --flag unstable_native_nodejs_ts_config",
+			"prettier --cache --cache-location ./.prettiercache --write"
 		],
 		"*.@(css)": [
 			"stylelint --cache --fix",
-			"prettier --cache --write"
+			"prettier --cache --cache-location ./.prettiercache --write"
 		],
-		"*.!(cjs|css|js|mjs|ts|tsx)": "prettier --cache --ignore-unknown --write"
+		"*.!(css|js|ts|tsx)": "prettier --cache --cache-location ./.prettiercache --ignore-unknown --write"
 	},
 	"postcss": {
 		"plugins": {
-			"tailwindcss": {},
-			"autoprefixer": {}
+			"@tailwindcss/postcss": {}
 		}
 	},
-	"prettier": "@stefanprobst/prettier-config",
+	"prettier": "@acdh-oeaw/prettier-config",
 	"simple-git-hooks": {
-		"commit-msg": "pnpm exec commitlint --edit",
-		"pre-commit": "pnpm exec lint-staged",
-		"pre-push": "pnpm run validate"
+		"pre-commit": "pnpm exec lint-staged"
 	},
 	"stylelint": {
-		"extends": "@stefanprobst/stylelint-config"
+		"extends": "@acdh-oeaw/stylelint-config"
 	}
 }

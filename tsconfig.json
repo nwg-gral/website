@@ -1,28 +1,19 @@
 {
-	"extends": "@stefanprobst/tsconfig",
+	"$schema": "https://json.schemastore.org/tsconfig",
+	"extends": "@acdh-oeaw/tsconfig",
 	"compilerOptions": {
-		"baseUrl": ".",
-		"exactOptionalPropertyTypes": false,
+		"plugins": [{ "name": "next" }],
 		"paths": {
-			"contentlayer/generated": ["./.contentlayer/generated"],
-			"@/*": ["./src/*"],
-			"~/*": ["./*"]
-		},
-		"plugins": [
-			{
-				"name": "next"
-			}
-		],
-		"strictNullChecks": true
+			"@/*": ["./*"],
+			"@content/*": ["./.content/generated/*"]
+		}
 	},
 	"include": [
-		"./src/types/*.d.ts",
-		"./next-env.d.ts",
-		"./**/*.ts",
-		"./**/*.tsx",
+		"next-env.d.ts",
+		"**/*.ts",
+		"**/*.tsx",
 		".next/types/**/*.ts",
-		"./*.config.js",
-		"./.contentlayer/generated"
+		".next/dev/types/**/*.ts"
 	],
-	"exclude": ["node_modules"]
+	"exclude": [".content", "content", "node_modules", "out", "public"]
 }

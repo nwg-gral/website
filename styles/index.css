@@ -1,0 +1,98 @@
+/* stylelint-disable color-no-hex */
+
+@import "tailwindcss";
+
+@theme inline {
+	--font-body: var(--_font-body, var(--default-font-family));
+	--font-display: var(--_font-display, var(--font-body));
+}
+
+@theme {
+	--color-primary: #d83f15;
+	--color-secondary: #0e5976;
+}
+
+@theme inline {
+	--color-neutral-50: var(--color-slate-50);
+	--color-neutral-100: var(--color-slate-100);
+	--color-neutral-200: var(--color-slate-200);
+	--color-neutral-300: var(--color-slate-300);
+	--color-neutral-400: var(--color-slate-400);
+	--color-neutral-500: var(--color-slate-500);
+	--color-neutral-600: var(--color-slate-600);
+	--color-neutral-700: var(--color-slate-700);
+	--color-neutral-800: var(--color-slate-800);
+	--color-neutral-900: var(--color-slate-900);
+	--color-neutral-950: var(--color-slate-950);
+}
+
+@utility prose {
+	li {
+		margin-left: 1.5em;
+		padding-left: 0.25em;
+		list-style: disc;
+	}
+}
+
+:root,
+body {
+	block-size: 100%;
+}
+
+blockquote,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	text-wrap: balance;
+}
+
+:focus {
+	outline: none;
+}
+
+:focus-visible {
+	outline: 2px solid var(--color-primary);
+}
+
+/*
+ * Work around for browser incompatibilities when floating `::first-letter` pseudo-element.
+ *
+ * TODO: Change to `initial-letter: 2` once Firefox lands support.
+ */
+
+p::first-letter {
+	margin-top: -0.2em;
+	margin-bottom: -0.2em;
+}
+
+/* stylelint-disable-next-line at-rule-no-vendor-prefix, at-rule-prelude-no-invalid */
+@-moz-document url-prefix() {
+	p::first-letter {
+		margin-top: -0.05em;
+		margin-bottom: 0;
+	}
+}
+
+/* stylelint-disable-next-line media-feature-range-notation */
+@media (min-width: 40rem) {
+	/* stylelint-disable-next-line at-rule-no-vendor-prefix, at-rule-prelude-no-invalid */
+	@-moz-document url-prefix() {
+		p::first-letter {
+			margin-top: 0;
+		}
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		transition-duration: 0.01ms !important;
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		scroll-behavior: auto !important;
+	}
+}
