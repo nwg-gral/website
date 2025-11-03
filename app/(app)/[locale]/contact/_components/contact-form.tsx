@@ -23,7 +23,8 @@ export function ContactForm(): ReactNode {
 		try {
 			setStatus({ status: "pending" });
 
-			const formData = new FormData(event.currentTarget);
+			const formElement = event.currentTarget;
+			const formData = new FormData(formElement);
 			const response = await fetch("/__forms.html", {
 				method: "POST",
 				headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -32,7 +33,9 @@ export function ContactForm(): ReactNode {
 			});
 			if (response.ok) {
 				setStatus({ status: "success" });
-				event.currentTarget.reset();
+				if (formElement) {
+					formElement.reset();
+				}
 			} else {
 				setStatus({
 					status: "error",
