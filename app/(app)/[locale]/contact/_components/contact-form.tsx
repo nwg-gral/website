@@ -65,20 +65,30 @@ export function ContactForm(): ReactNode {
 					<span className="justify-self-start border-b border-primary p-0.5 font-display text-secondary">
 						{t("subject")}:
 					</span>
-					<input className="border border-secondary px-4 py-3" name="subject" />
+					<input className="border border-secondary px-4 py-3" name="subject" required={true} />
 				</label>
 				<label className="grid gap-2">
 					<span className="justify-self-start border-b border-primary p-0.5 font-display text-secondary">
 						{t("email")}:
 					</span>
-					<input className="border border-secondary px-4 py-3" name="email" type="email" />
+					<input
+						className="border border-secondary px-4 py-3"
+						name="email"
+						required={true}
+						type="email"
+					/>
 				</label>
 			</div>
 			<label className="grid gap-2">
 				<span className="justify-self-start border-b border-primary p-0.5 font-display text-secondary">
 					{t("message")}:
 				</span>
-				<textarea className="border border-primary px-4 py-3" name="message" rows={8} />
+				<textarea
+					className="border border-primary px-4 py-3"
+					name="message"
+					required={true}
+					rows={8}
+				/>
 			</label>
 			<div className="flex justify-end">
 				<button
