@@ -3,13 +3,13 @@ import { fields, singleton } from "@keystatic/core";
 
 // import { createPreviewUrl } from "@/lib/content/keystatic/utils/create-preview-url";
 
-export const createActivitiesPage = createSingleton("/activities-page/", (paths, locale) => {
+export const createPublicationsPage = createSingleton("/publications-page/", (paths, locale) => {
 	return singleton({
-		label: createLabel("Activities page", locale),
+		label: createLabel("Publications page", locale),
 		path: paths.contentPath,
 		format: { contentField: "content" },
 		entryLayout: "form",
-		// previewUrl: createPreviewUrl("/activities"),
+		// previewUrl: createPreviewUrl("/publications"),
 		schema: {
 			title: fields.text({
 				label: "Title",

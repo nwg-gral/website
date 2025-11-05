@@ -7,6 +7,7 @@ import { contactPage } from "@/lib/content/singletons/contact-page";
 import { imprintPage } from "@/lib/content/singletons/imprint-page";
 import { indexPage } from "@/lib/content/singletons/index-page";
 import { networksPage } from "@/lib/content/singletons/networks-page";
+import { publicationsPage } from "@/lib/content/singletons/publications-page";
 import { researchPage } from "@/lib/content/singletons/research-page";
 import { teamPage } from "@/lib/content/singletons/team-page";
 
@@ -17,6 +18,7 @@ export const config = createConfig({
 		imprintPage,
 		indexPage,
 		networksPage,
+		publicationsPage,
 		researchPage,
 		teamPage,
 

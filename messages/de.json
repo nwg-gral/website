@@ -65,11 +65,18 @@
 			"research": "Forschung",
 			"networks": "Netzwerke",
 			"activities": "Aktivitäten",
+			"publications": "Publikationen",
 			"contact": "Kontakt"
 		}
 	},
 	"PageLayout": {
 		"skip-to-main-content": "Zum Hauptinhalt springen"
+	},
+	"PublicationsPage": {
+		"meta": {
+			"title": "Publikationen"
+		},
+		"read-more": "Weiterlesen"
 	},
 	"ResearchPage": {
 		"meta": {

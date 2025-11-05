@@ -19,6 +19,7 @@ export function PageHeader(): ReactNode {
 		research: { href: "/research", label: t("links.research") },
 		networks: { href: "/networks", label: t("links.networks") },
 		activities: { href: "/activities", label: t("links.activities") },
+		publications: { href: "/publications", label: t("links.publications") },
 		contact: { href: "/contact", label: t("links.contact") },
 	};
 
@@ -56,7 +57,7 @@ export function PageHeader(): ReactNode {
 							</li>
 						);
 					})}
-					<li>
+					<li className="ml-auto sm:ml-0">
 						<a aria-label="Instagram" href={metadata.social.instagram}>
 							<Image
 								alt=""

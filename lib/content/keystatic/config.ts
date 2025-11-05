@@ -10,6 +10,7 @@ import { createImprintPage } from "@/lib/content/keystatic/singletons/imprint-pa
 import { createIndexPage } from "@/lib/content/keystatic/singletons/index-page";
 import { createMetadata } from "@/lib/content/keystatic/singletons/metadata";
 import { createNetworksPage } from "@/lib/content/keystatic/singletons/networks-page";
+import { createPublicationsPage } from "@/lib/content/keystatic/singletons/publications-page";
 import { createResearchPage } from "@/lib/content/keystatic/singletons/research-page";
 import { createTeamPage } from "@/lib/content/keystatic/singletons/team-page";
 import { defaultLocale, getIntlLanguage } from "@/lib/i18n/locales";
@@ -28,6 +29,7 @@ export const config = createConfig({
 		[withI18nPrefix("index-page", locale)]: createIndexPage(locale),
 		[withI18nPrefix("metadata", locale)]: createMetadata(locale),
 		[withI18nPrefix("networks-page", locale)]: createNetworksPage(locale),
+		[withI18nPrefix("publications-page", locale)]: createPublicationsPage(locale),
 		[withI18nPrefix("research-page", locale)]: createResearchPage(locale),
 		[withI18nPrefix("team-page", locale)]: createTeamPage(locale),
 	},
@@ -58,6 +60,7 @@ export const config = createConfig({
 				withI18nPrefix("research-page", locale),
 				withI18nPrefix("networks-page", locale),
 				withI18nPrefix("activities-page", locale),
+				withI18nPrefix("publications-page", locale),
 				withI18nPrefix("contact-page", locale),
 				withI18nPrefix("imprint-page", locale),
 			],

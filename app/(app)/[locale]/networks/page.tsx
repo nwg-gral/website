@@ -96,7 +96,7 @@ function PartnerSection(props: Readonly<PartnerSectionProps>): ReactNode {
 									<h2 className="font-display text-2xl text-primary">{partner.name}</h2>
 									<div className="flex gap-12">
 										<WebsiteLink href={partner.website} name={partner.name} />
-										<div className="prose text-lg prose-sm">
+										<div className="prose prose-sm text-lg">
 											<Content />
 										</div>
 									</div>

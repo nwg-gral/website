@@ -33,9 +33,7 @@ export function ContactForm(): ReactNode {
 			});
 			if (response.ok) {
 				setStatus({ status: "success" });
-				if (formElement) {
-					formElement.reset();
-				}
+				formElement.reset();
 			} else {
 				setStatus({
 					status: "error",

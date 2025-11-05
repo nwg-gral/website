@@ -23,12 +23,12 @@ const compileOptions: CompileOptions = {
 	rehypePlugins: [createImageSizesPlugin()],
 };
 
-export const activitiesPage = createCollection({
-	name: "activities-page",
-	directory: "./content/de/activities-page/",
+export const publicationsPage = createCollection({
+	name: "publications-page",
+	directory: "./content/de/publications-page/",
 	include: ["index.mdx"],
 	read() {
-		return reader.singletons["de:activities-page"].readOrThrow({ resolveLinkedFiles: true });
+		return reader.singletons["de:publications-page"].readOrThrow({ resolveLinkedFiles: true });
 	},
 	async transform(data, item, context) {
 		const { content, ...metadata } = data;
