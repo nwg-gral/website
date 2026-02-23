@@ -13,25 +13,42 @@ import { createNetworksPage } from "@/lib/content/keystatic/singletons/networks-
 import { createPublicationsPage } from "@/lib/content/keystatic/singletons/publications-page";
 import { createResearchPage } from "@/lib/content/keystatic/singletons/research-page";
 import { createTeamPage } from "@/lib/content/keystatic/singletons/team-page";
-import { defaultLocale, getIntlLanguage } from "@/lib/i18n/locales";
-
-const locale = getIntlLanguage(defaultLocale);
 
 export const config = createConfig({
 	collections: {
-		[withI18nPrefix("events", locale)]: createEvents(locale),
-		[withI18nPrefix("publications", locale)]: createPublications(locale),
+		[withI18nPrefix("events", "de")]: createEvents("de"),
+		[withI18nPrefix("events", "en")]: createEvents("en"),
+
+		[withI18nPrefix("publications", "de")]: createPublications("de"),
+		[withI18nPrefix("publications", "en")]: createPublications("en"),
 	},
 	singletons: {
-		[withI18nPrefix("activities-page", locale)]: createActivitiesPage(locale),
-		[withI18nPrefix("contact-page", locale)]: createContactPage(locale),
-		[withI18nPrefix("imprint-page", locale)]: createImprintPage(locale),
-		[withI18nPrefix("index-page", locale)]: createIndexPage(locale),
-		[withI18nPrefix("metadata", locale)]: createMetadata(locale),
-		[withI18nPrefix("networks-page", locale)]: createNetworksPage(locale),
-		[withI18nPrefix("publications-page", locale)]: createPublicationsPage(locale),
-		[withI18nPrefix("research-page", locale)]: createResearchPage(locale),
-		[withI18nPrefix("team-page", locale)]: createTeamPage(locale),
+		[withI18nPrefix("activities-page", "de")]: createActivitiesPage("de"),
+		[withI18nPrefix("activities-page", "en")]: createActivitiesPage("en"),
+
+		[withI18nPrefix("contact-page", "de")]: createContactPage("de"),
+		[withI18nPrefix("contact-page", "en")]: createContactPage("en"),
+
+		[withI18nPrefix("imprint-page", "de")]: createImprintPage("de"),
+		[withI18nPrefix("imprint-page", "en")]: createImprintPage("en"),
+
+		[withI18nPrefix("index-page", "de")]: createIndexPage("de"),
+		[withI18nPrefix("index-page", "en")]: createIndexPage("en"),
+
+		[withI18nPrefix("metadata", "de")]: createMetadata("de"),
+		[withI18nPrefix("metadata", "en")]: createMetadata("en"),
+
+		[withI18nPrefix("networks-page", "de")]: createNetworksPage("de"),
+		[withI18nPrefix("networks-page", "en")]: createNetworksPage("en"),
+
+		[withI18nPrefix("publications-page", "de")]: createPublicationsPage("de"),
+		[withI18nPrefix("publications-page", "en")]: createPublicationsPage("en"),
+
+		[withI18nPrefix("research-page", "de")]: createResearchPage("de"),
+		[withI18nPrefix("research-page", "en")]: createResearchPage("en"),
+
+		[withI18nPrefix("team-page", "de")]: createTeamPage("de"),
+		[withI18nPrefix("team-page", "en")]: createTeamPage("en"),
 	},
 	storage:
 		env.NEXT_PUBLIC_KEYSTATIC_MODE === "github" &&
@@ -53,18 +70,39 @@ export const config = createConfig({
 			name: "GraL Website",
 		},
 		navigation: {
-			Data: [withI18nPrefix("events", locale), withI18nPrefix("publications", locale)],
-			Pages: [
-				withI18nPrefix("index-page", locale),
-				withI18nPrefix("team-page", locale),
-				withI18nPrefix("research-page", locale),
-				withI18nPrefix("networks-page", locale),
-				withI18nPrefix("activities-page", locale),
-				withI18nPrefix("publications-page", locale),
-				withI18nPrefix("contact-page", locale),
-				withI18nPrefix("imprint-page", locale),
+			Data: [
+				withI18nPrefix("events", "de"),
+				withI18nPrefix("events", "en"),
+
+				withI18nPrefix("publications", "de"),
+				withI18nPrefix("publications", "en"),
 			],
-			Settings: [withI18nPrefix("metadata", locale)],
+			Pages: [
+				withI18nPrefix("index-page", "de"),
+				withI18nPrefix("index-page", "en"),
+
+				withI18nPrefix("team-page", "de"),
+				withI18nPrefix("team-page", "en"),
+
+				withI18nPrefix("research-page", "de"),
+				withI18nPrefix("research-page", "en"),
+
+				withI18nPrefix("networks-page", "de"),
+				withI18nPrefix("networks-page", "en"),
+
+				withI18nPrefix("activities-page", "de"),
+				withI18nPrefix("activities-page", "en"),
+
+				withI18nPrefix("publications-page", "de"),
+				withI18nPrefix("publications-page", "en"),
+
+				withI18nPrefix("contact-page", "de"),
+				withI18nPrefix("contact-page", "en"),
+
+				withI18nPrefix("imprint-page", "de"),
+				withI18nPrefix("imprint-page", "en"),
+			],
+			Settings: [withI18nPrefix("metadata", "de"), withI18nPrefix("metadata", "en")],
 		},
 	},
 });
