@@ -8,6 +8,8 @@ import { useMetadata } from "@/lib/i18n/metadata";
 import instagram from "@/public/assets/images/icon-instagram.svg";
 import gralLogo from "@/public/assets/images/logo.svg";
 
+import { LocaleSwitcher } from "./locale-switcher";
+
 export function PageHeader(): ReactNode {
 	const t = useTranslations("PageHeader");
 
@@ -26,7 +28,9 @@ export function PageHeader(): ReactNode {
 	return (
 		<header>
 			<div className="mx-auto grid max-w-6xl grid-cols-2 justify-items-center gap-4 px-6 py-4 sm:grid-cols-[160px_1fr_160px] sm:px-8">
-				<div>{/* <LocaleSwitcher /> */}</div>
+				<div className="place-self-start">
+					<LocaleSwitcher />
+				</div>
 				<Link
 					aria-label={links.home.label}
 					className="relative aspect-square h-full w-full max-w-xs object-contain"
