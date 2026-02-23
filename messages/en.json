@@ -1,0 +1,107 @@
+{
+	"mdx": {
+		"footnote-back-label": "Back to reference {reference}",
+		"footnotes": "Footnotes"
+	},
+	"ActivitiesPage": {
+		"meta": {
+			"title": "Activities"
+		},
+		"read-more": "Continue"
+	},
+	"ContactForm": {
+		"subject": "Subject",
+		"email": "Your e-mail address",
+		"message": "Message",
+		"submit": "Send",
+		"success": "Successfully sent message."
+	},
+	"ContactPage": {
+		"meta": {
+			"title": "Contact"
+		}
+	},
+	"CVLink": {
+		"cv": "Curriculum vitae of {name}"
+	},
+	"EmailLink": {
+		"email": "Email of {name}"
+	},
+	"EventPage": {
+		"meta": {
+			"title": "Event"
+		},
+		"read-more": "Continue"
+	},
+	"FeaturedContent": {
+		"title": "Featured"
+	},
+	"FeaturedItems": {
+		"empty": "Nothing to see"
+	},
+	"IndexPage": {
+		"meta": {
+			"title": "Home"
+		}
+	},
+	"LocaleSwitcher": {
+		"switch-locale": "Switch to {locale, select, de {German} en {English} other {Unknown}}"
+	},
+	"NetworksPage": {
+		"meta": {
+			"title": "Networks"
+		}
+	},
+	"NotFoundPage": {
+		"meta": {
+			"title": "Page not found"
+		},
+		"page-not-found": "Page not found"
+	},
+	"PageHeader": {
+		"links": {
+			"home": "Home",
+			"team": "Team",
+			"research": "Research",
+			"networks": "Networks",
+			"activities": "Activities",
+			"publications": "Publications",
+			"contact": "Contact"
+		}
+	},
+	"PageLayout": {
+		"skip-to-main-content": "Skip to main content"
+	},
+	"PublicationsPage": {
+		"meta": {
+			"title": "Publications"
+		},
+		"read-more": "Continue"
+	},
+	"ResearchPage": {
+		"meta": {
+			"title": "Research"
+		}
+	},
+	"RootLayout": {
+		"meta": {
+			"title": "Gelingensbedingungen rassismussensibler Lehrer:innenbildung (GraL)",
+			"description": "Nachwuchsgruppe Gelingensbedingungen rassismussensibler Lehrer:innenbildung"
+		}
+	},
+	"SuccessPage": {
+		"meta": {
+			"title": "Thank you"
+		},
+		"thanks-for-your-message": "Thank you for your message",
+		"go-back-to-home-page": "Back to home page"
+	},
+	"TeamPage": {
+		"meta": {
+			"title": "Team"
+		}
+	},
+	"WebsiteLink": {
+		"website": "Website of {name}"
+	}
+}
