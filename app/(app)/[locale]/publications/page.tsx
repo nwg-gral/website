@@ -1,12 +1,13 @@
 import { isNonEmptyArray, isNonEmptyString } from "@acdh-oeaw/lib";
 import type { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import type { ReactNode } from "react";
 
 import { Container } from "@/components/container";
 import { Main } from "@/components/main";
 import { PageTitle } from "@/components/page-title";
 import { createClient } from "@/lib/content/create-client";
+import { getIntlLanguage } from "@/lib/i18n/locales";
 
 export async function generateMetadata(): Promise<Metadata> {
 	const t = await getTranslations("PublicationsPage");
@@ -19,7 +20,8 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function PublicationsPage(): Promise<ReactNode> {
-	const client = await createClient();
+	const locale = await getLocale();
+	const client = await createClient(getIntlLanguage(locale));
 
 	const page = await client.singletons.publicationsPage.get();
 
@@ -46,7 +48,8 @@ export default async function PublicationsPage(): Promise<ReactNode> {
 async function PublicationsSection(): Promise<ReactNode> {
 	const t = await getTranslations("PublicationsPage");
 
-	const client = await createClient();
+	const locale = await getLocale();
+	const client = await createClient(getIntlLanguage(locale));
 
 	const publications = await client.collections.publications.all();
 

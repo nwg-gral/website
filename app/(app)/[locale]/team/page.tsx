@@ -1,7 +1,7 @@
 import { isNonEmptyString } from "@acdh-oeaw/lib";
 import type { Metadata } from "next";
 import Image, { type StaticImageData } from "next/image";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { Fragment, type ReactNode } from "react";
 
 import { Container } from "@/components/container";
@@ -10,6 +10,7 @@ import { Main } from "@/components/main";
 import { PageTitle } from "@/components/page-title";
 import { WebsiteLink } from "@/components/website-link";
 import { createClient } from "@/lib/content/create-client";
+import { getIntlLanguage } from "@/lib/i18n/locales";
 
 export async function generateMetadata(): Promise<Metadata> {
 	const t = await getTranslations("TeamPage");
@@ -22,7 +23,8 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function TeamPage(): Promise<ReactNode> {
-	const client = await createClient();
+	const locale = await getLocale();
+	const client = await createClient(getIntlLanguage(locale));
 
 	const page = await client.singletons.teamPage.get();
 
@@ -31,7 +33,7 @@ export default async function TeamPage(): Promise<ReactNode> {
 
 	const team = page.metadata.members;
 
-	function getFullName(person: (typeof team)[number]) {
+	function getFullName(person: { title: string; firstName: string; name: string }) {
 		const fullName = [person.title, person.firstName, person.name]
 			.filter(isNonEmptyString)
 			.join(" ");
@@ -43,7 +45,12 @@ export default async function TeamPage(): Promise<ReactNode> {
 		<Main>
 			<Container size="sm">
 				<PageTitle>
-					{title} {team.map(getFullName).join(", ")}
+					{title}{" "}
+					{team
+						.map((person) => {
+							return getFullName(person);
+						})
+						.join(", ")}
 				</PageTitle>
 
 				<div className="drop-caps prose space-y-6">

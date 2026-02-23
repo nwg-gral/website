@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import type { ReactNode } from "react";
 
 import { ContactForm } from "@/app/(app)/[locale]/contact/_components/contact-form";
@@ -8,6 +8,7 @@ import { ImprintSection } from "@/components/imprint-section";
 import { Main } from "@/components/main";
 import { PageTitle } from "@/components/page-title";
 import { createClient } from "@/lib/content/create-client";
+import { getIntlLanguage } from "@/lib/i18n/locales";
 
 export async function generateMetadata(): Promise<Metadata> {
 	const t = await getTranslations("ContactPage");
@@ -20,7 +21,8 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function ContactPage(): Promise<ReactNode> {
-	const client = await createClient();
+	const locale = await getLocale();
+	const client = await createClient(getIntlLanguage(locale));
 
 	const page = await client.singletons.contactPage.get();
 
