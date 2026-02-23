@@ -1,13 +1,14 @@
 import { isNonEmptyString } from "@acdh-oeaw/lib";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import type { ReactNode } from "react";
 
 import { Container } from "@/components/container";
 import { Main } from "@/components/main";
 import { PageTitle } from "@/components/page-title";
 import { createClient } from "@/lib/content/create-client";
+import { getIntlLanguage } from "@/lib/i18n/locales";
 
 interface EventPageProps extends PageProps<"/[locale]/events/[id]"> {}
 
@@ -15,7 +16,8 @@ export async function generateMetadata(props: EventPageProps): Promise<Metadata>
 	const { id: _id } = await props.params;
 	const id = decodeURIComponent(_id);
 
-	const client = await createClient();
+	const locale = await getLocale();
+	const client = await createClient(getIntlLanguage(locale));
 
 	const event = await client.collections.events.get(id);
 
@@ -34,7 +36,8 @@ export default async function EventPage(props: Readonly<EventPageProps>): Promis
 	const { id: _id } = await params;
 	const id = decodeURIComponent(_id);
 
-	const client = await createClient();
+	const locale = await getLocale();
+	const client = await createClient(getIntlLanguage(locale));
 
 	const t = await getTranslations("EventPage");
 

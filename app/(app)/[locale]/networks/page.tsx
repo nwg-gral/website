@@ -1,6 +1,6 @@
 import type { MDXContent } from "mdx/types";
 import type { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { Fragment, type ReactNode } from "react";
 
 import { Container } from "@/components/container";
@@ -9,6 +9,7 @@ import { PageTitle } from "@/components/page-title";
 import { SectionTitle } from "@/components/section-title";
 import { WebsiteLink } from "@/components/website-link";
 import { createClient } from "@/lib/content/create-client";
+import { getIntlLanguage } from "@/lib/i18n/locales";
 
 export async function generateMetadata(): Promise<Metadata> {
 	const t = await getTranslations("NetworksPage");
@@ -21,7 +22,8 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function NetworksPage(): Promise<ReactNode> {
-	const client = await createClient();
+	const locale = await getLocale();
+	const client = await createClient(getIntlLanguage(locale));
 
 	const page = await client.singletons.networksPage.get();
 

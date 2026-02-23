@@ -1,4 +1,5 @@
 import { createCollection } from "@acdh-oeaw/content-lib";
+import { withI18nPrefix } from "@acdh-oeaw/keystatic-lib";
 import type { MDXContent } from "mdx/types";
 import { VFile } from "vfile";
 
@@ -10,86 +11,94 @@ import {
 	createTypographicQuotesPlugin,
 } from "@/lib/content/mdx/remark-plugins";
 import { createRemarkRehypeOptions } from "@/lib/content/mdx/remark-rehype-options";
-import { defaultLocale, getIntlLanguage } from "@/lib/i18n/locales";
+import { getIntlLanguage, type IntlLocale } from "@/lib/i18n/locales";
 
-const locale = defaultLocale;
+function createNetworksPageCollection<TLocale extends IntlLocale>(locale: TLocale) {
+	const language = getIntlLanguage(locale);
+	const collection = withI18nPrefix("networks-page", language);
 
-const compileOptions: CompileOptions = {
-	remarkPlugins: [
-		createGitHubMarkdownPlugin(),
-		createTypographicQuotesPlugin(getIntlLanguage(locale)),
-	],
-	remarkRehypeOptions: createRemarkRehypeOptions(locale),
-	rehypePlugins: [createImageSizesPlugin()],
+	const compileOptions: CompileOptions = {
+		remarkPlugins: [
+			createGitHubMarkdownPlugin(),
+			createTypographicQuotesPlugin(getIntlLanguage(locale)),
+		],
+		remarkRehypeOptions: createRemarkRehypeOptions(locale),
+		rehypePlugins: [createImageSizesPlugin()],
+	};
+
+	return createCollection({
+		name: collection,
+		directory: `./content/${language}/networks-page/`,
+		include: ["index.mdx"],
+		read() {
+			return reader.singletons[collection].readOrThrow({ resolveLinkedFiles: true });
+		},
+		async transform(data, item, context) {
+			const { content, ...metadata } = data;
+
+			async function transformMdxField(content: string) {
+				const input = new VFile({ path: item.absoluteFilePath, value: content });
+				const output = await compile(input, compileOptions);
+				const module = context.createJavaScriptImport<MDXContent>(String(output));
+				return module;
+			}
+
+			const module = await transformMdxField(content);
+
+			const cooperationPartners = {
+				...data.cooperationPartners,
+				text: await transformMdxField(data.cooperationPartners.text),
+				items: await Promise.all(
+					data.cooperationPartners.items.map(async (item) => {
+						return {
+							...item,
+							content: await transformMdxField(item.content),
+						};
+					}),
+				),
+			};
+
+			const internationalAdvisoryBoard = {
+				...data.internationalAdvisoryBoard,
+				text: await transformMdxField(data.internationalAdvisoryBoard.text),
+				items: await Promise.all(
+					data.internationalAdvisoryBoard.items.map(async (item) => {
+						return {
+							...item,
+							content: await transformMdxField(item.content),
+						};
+					}),
+				),
+			};
+
+			const networks = {
+				...data.networks,
+				text: await transformMdxField(data.networks.text),
+				items: await Promise.all(
+					data.networks.items.map(async (item) => {
+						return {
+							...item,
+							content: await transformMdxField(item.content),
+						};
+					}),
+				),
+			};
+
+			return {
+				id: item.id,
+				content: module,
+				metadata: {
+					...metadata,
+					cooperationPartners,
+					internationalAdvisoryBoard,
+					networks,
+				},
+			};
+		},
+	});
+}
+
+export const networksPage = {
+	de: createNetworksPageCollection("de-DE"),
+	en: createNetworksPageCollection("en-GB"),
 };
-
-export const networksPage = createCollection({
-	name: "networks-page",
-	directory: "./content/de/networks-page/",
-	include: ["index.mdx"],
-	read() {
-		return reader.singletons["de:networks-page"].readOrThrow({ resolveLinkedFiles: true });
-	},
-	async transform(data, item, context) {
-		const { content, ...metadata } = data;
-
-		async function transformMdxField(content: string) {
-			const input = new VFile({ path: item.absoluteFilePath, value: content });
-			const output = await compile(input, compileOptions);
-			const module = context.createJavaScriptImport<MDXContent>(String(output));
-			return module;
-		}
-
-		const module = await transformMdxField(content);
-
-		const cooperationPartners = {
-			...data.cooperationPartners,
-			text: await transformMdxField(data.cooperationPartners.text),
-			items: await Promise.all(
-				data.cooperationPartners.items.map(async (item) => {
-					return {
-						...item,
-						content: await transformMdxField(item.content),
-					};
-				}),
-			),
-		};
-
-		const internationalAdvisoryBoard = {
-			...data.internationalAdvisoryBoard,
-			text: await transformMdxField(data.internationalAdvisoryBoard.text),
-			items: await Promise.all(
-				data.internationalAdvisoryBoard.items.map(async (item) => {
-					return {
-						...item,
-						content: await transformMdxField(item.content),
-					};
-				}),
-			),
-		};
-
-		const networks = {
-			...data.networks,
-			text: await transformMdxField(data.networks.text),
-			items: await Promise.all(
-				data.networks.items.map(async (item) => {
-					return {
-						...item,
-						content: await transformMdxField(item.content),
-					};
-				}),
-			),
-		};
-
-		return {
-			id: item.id,
-			content: module,
-			metadata: {
-				...metadata,
-				cooperationPartners,
-				internationalAdvisoryBoard,
-				networks,
-			},
-		};
-	},
-});

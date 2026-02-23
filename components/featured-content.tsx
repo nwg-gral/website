@@ -1,11 +1,12 @@
 import { useTranslations } from "next-intl";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import type { ReactNode } from "react";
 
 import { Link } from "@/components/link";
 import type { Event } from "@/lib/content/client/events";
 import type { Publication } from "@/lib/content/client/publications";
 import { createClient } from "@/lib/content/create-client";
+import { getIntlLanguage } from "@/lib/i18n/locales";
 import { createHref } from "@/lib/navigation/create-href";
 
 export function FeaturedContent(): ReactNode {
@@ -32,8 +33,8 @@ export function FeaturedContent(): ReactNode {
 
 async function FeaturedItems(): Promise<ReactNode> {
 	const t = await getTranslations("FeaturedItems");
-
-	const client = await createClient();
+	const locale = await getLocale();
+	const client = await createClient(getIntlLanguage(locale));
 
 	const page = await client.singletons.indexPage.get();
 

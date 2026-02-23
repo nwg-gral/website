@@ -13,16 +13,34 @@ import { teamPage } from "@/lib/content/singletons/team-page";
 
 export const config = createConfig({
 	collections: [
-		activitiesPage,
-		contactPage,
-		imprintPage,
-		indexPage,
-		networksPage,
-		publicationsPage,
-		researchPage,
-		teamPage,
+		activitiesPage.de,
+		activitiesPage.en,
 
-		events,
-		publications,
+		contactPage.de,
+		contactPage.en,
+
+		imprintPage.de,
+		imprintPage.en,
+
+		indexPage.de,
+		indexPage.en,
+
+		networksPage.de,
+		networksPage.en,
+
+		publicationsPage.de,
+		publicationsPage.en,
+
+		researchPage.de,
+		researchPage.en,
+
+		teamPage.de,
+		teamPage.en,
+
+		events.de,
+		events.en,
+
+		publications.de,
+		publications.en,
 	],
 });

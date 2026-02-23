@@ -20,16 +20,15 @@ export async function getIntlMessages(locale: IntlLocale) {
 	}
 
 	switch (language) {
-		// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
 		case "de": {
 			await import("@valibot/i18n/de");
 			break;
 		}
 
-		// case "en": {
-		// 	/** Default messages. */
-		// 	break;
-		// }
+		case "en": {
+			/** Default messages. */
+			break;
+		}
 	}
 
 	const messages = {

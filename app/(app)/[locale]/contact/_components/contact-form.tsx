@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { type FormEvent, type ReactNode, useState } from "react";
+import { type ReactNode, type SubmitEvent, useState } from "react";
 
 export function ContactForm(): ReactNode {
 	const t = useTranslations("ContactForm");
@@ -17,7 +17,7 @@ export function ContactForm(): ReactNode {
 		| { status: "error"; message: string }
 	>({ status: "idle" });
 
-	async function onSubmit(event: FormEvent<HTMLFormElement>) {
+	async function onSubmit(event: SubmitEvent<HTMLFormElement>) {
 		event.preventDefault();
 
 		try {

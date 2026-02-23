@@ -1,4 +1,5 @@
 import { createCollection } from "@acdh-oeaw/content-lib";
+import { withI18nPrefix } from "@acdh-oeaw/keystatic-lib";
 import type { MDXContent } from "mdx/types";
 import { VFile } from "vfile";
 
@@ -10,44 +11,52 @@ import {
 	createTypographicQuotesPlugin,
 } from "@/lib/content/mdx/remark-plugins";
 import { createRemarkRehypeOptions } from "@/lib/content/mdx/remark-rehype-options";
-import { defaultLocale, getIntlLanguage } from "@/lib/i18n/locales";
+import { getIntlLanguage, type IntlLocale } from "@/lib/i18n/locales";
 
-const locale = defaultLocale;
+function createImprintPageCollection<TLocale extends IntlLocale>(locale: TLocale) {
+	const language = getIntlLanguage(locale);
+	const collection = withI18nPrefix("imprint-page", language);
 
-const compileOptions: CompileOptions = {
-	remarkPlugins: [
-		createGitHubMarkdownPlugin(),
-		createTypographicQuotesPlugin(getIntlLanguage(locale)),
-	],
-	remarkRehypeOptions: createRemarkRehypeOptions(locale),
-	rehypePlugins: [createImageSizesPlugin()],
+	const compileOptions: CompileOptions = {
+		remarkPlugins: [
+			createGitHubMarkdownPlugin(),
+			createTypographicQuotesPlugin(getIntlLanguage(locale)),
+		],
+		remarkRehypeOptions: createRemarkRehypeOptions(locale),
+		rehypePlugins: [createImageSizesPlugin()],
+	};
+
+	return createCollection({
+		name: collection,
+		directory: `./content/${language}/imprint-page/`,
+		include: ["index.mdx"],
+		read() {
+			return reader.singletons[collection].readOrThrow({ resolveLinkedFiles: true });
+		},
+		async transform(data, item, context) {
+			const { content, ...metadata } = data;
+
+			async function transformMdxField(content: string) {
+				const input = new VFile({ path: item.absoluteFilePath, value: content });
+				const output = await compile(input, compileOptions);
+				const module = context.createJavaScriptImport<MDXContent>(String(output));
+				return module;
+			}
+
+			const module = await transformMdxField(content);
+
+			return {
+				id: item.id,
+				content: module,
+				metadata: {
+					...metadata,
+				},
+			};
+		},
+	});
+}
+
+export const imprintPage = {
+	de: createImprintPageCollection("de-DE"),
+	en: createImprintPageCollection("en-GB"),
 };
-
-export const imprintPage = createCollection({
-	name: "imprint-page",
-	directory: "./content/de/imprint-page/",
-	include: ["index.mdx"],
-	read() {
-		return reader.singletons["de:imprint-page"].readOrThrow({ resolveLinkedFiles: true });
-	},
-	async transform(data, item, context) {
-		const { content, ...metadata } = data;
-
-		async function transformMdxField(content: string) {
-			const input = new VFile({ path: item.absoluteFilePath, value: content });
-			const output = await compile(input, compileOptions);
-			const module = context.createJavaScriptImport<MDXContent>(String(output));
-			return module;
-		}
-
-		const module = await transformMdxField(content);
-
-		return {
-			id: item.id,
-			content: module,
-			metadata: {
-				...metadata,
-			},
-		};
-	},
-});

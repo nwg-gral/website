@@ -1,3 +1,4 @@
+import { getLocale } from "next-intl/server";
 import type { ReactNode } from "react";
 
 import { Container } from "@/components/container";
@@ -5,9 +6,11 @@ import { FeaturedContent } from "@/components/featured-content";
 import { Main } from "@/components/main";
 import { PageTitle } from "@/components/page-title";
 import { createClient } from "@/lib/content/create-client";
+import { getIntlLanguage } from "@/lib/i18n/locales";
 
 export default async function IndexPage(): Promise<ReactNode> {
-	const client = await createClient();
+	const locale = await getLocale();
+	const client = await createClient(getIntlLanguage(locale));
 
 	const page = await client.singletons.indexPage.get();
 

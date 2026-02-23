@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import type { ReactNode } from "react";
 
 import { Container } from "@/components/container";
@@ -9,6 +9,7 @@ import { SectionHeading } from "@/components/section-heading";
 import { SectionParagraph } from "@/components/section-paragraph";
 import { SectionTitle } from "@/components/section-title";
 import { createClient } from "@/lib/content/create-client";
+import { getIntlLanguage } from "@/lib/i18n/locales";
 
 export async function generateMetadata(): Promise<Metadata> {
 	const t = await getTranslations("ResearchPage");
@@ -21,7 +22,8 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function ResearchPage(): Promise<ReactNode> {
-	const client = await createClient();
+	const locale = await getLocale();
+	const client = await createClient(getIntlLanguage(locale));
 
 	const page = await client.singletons.researchPage.get();
 

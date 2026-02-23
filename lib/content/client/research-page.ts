@@ -1,13 +1,26 @@
-import singleton from "@content/research-page";
+import type en from "@content/en-research-page";
 
 import type { SingletonClient } from "@/lib/content/types";
+import type { IntlLanguage } from "@/lib/i18n/locales";
 
-const item = singleton.get("")!.document;
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export async function createClient(language: IntlLanguage) {
+	const singleton = await import(`@content/${language}-research-page/index.js`).then((module) => {
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+		return module.default as typeof en;
+	});
 
-export type ResearchPage = typeof item;
+	const item = singleton.get("")!.document;
 
-export const client: SingletonClient<ResearchPage> = {
-	get() {
-		return Promise.resolve(item);
-	},
-};
+	const client = {
+		get() {
+			return Promise.resolve(item);
+		},
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	} satisfies SingletonClient<any>;
+
+	return client;
+}
+
+export type ResearchPage =
+	Awaited<ReturnType<typeof createClient>> extends SingletonClient<infer T> ? T : never;

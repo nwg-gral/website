@@ -1,4 +1,5 @@
 import { createCollection } from "@acdh-oeaw/content-lib";
+import { withI18nPrefix } from "@acdh-oeaw/keystatic-lib";
 import type { MDXContent } from "mdx/types";
 import { VFile } from "vfile";
 
@@ -11,58 +12,66 @@ import {
 } from "@/lib/content/mdx/remark-plugins";
 import { createRemarkRehypeOptions } from "@/lib/content/mdx/remark-rehype-options";
 import { getImageDimensions } from "@/lib/content/utils/get-image-dimensions";
-import { defaultLocale, getIntlLanguage } from "@/lib/i18n/locales";
+import { getIntlLanguage, type IntlLocale } from "@/lib/i18n/locales";
 
-const locale = defaultLocale;
+function createTeamPageCollection<TLocale extends IntlLocale>(locale: TLocale) {
+	const language = getIntlLanguage(locale);
+	const collection = withI18nPrefix("team-page", language);
 
-const compileOptions: CompileOptions = {
-	remarkPlugins: [
-		createGitHubMarkdownPlugin(),
-		createTypographicQuotesPlugin(getIntlLanguage(locale)),
-	],
-	remarkRehypeOptions: createRemarkRehypeOptions(locale),
-	rehypePlugins: [createImageSizesPlugin()],
+	const compileOptions: CompileOptions = {
+		remarkPlugins: [
+			createGitHubMarkdownPlugin(),
+			createTypographicQuotesPlugin(getIntlLanguage(locale)),
+		],
+		remarkRehypeOptions: createRemarkRehypeOptions(locale),
+		rehypePlugins: [createImageSizesPlugin()],
+	};
+
+	return createCollection({
+		name: collection,
+		directory: `./content/${language}/team-page/`,
+		include: ["index.mdx"],
+		read() {
+			return reader.singletons[collection].readOrThrow({ resolveLinkedFiles: true });
+		},
+		async transform(data, item, context) {
+			const { content, ...metadata } = data;
+
+			async function transformMdxField(content: string) {
+				const input = new VFile({ path: item.absoluteFilePath, value: content });
+				const output = await compile(input, compileOptions);
+				const module = context.createJavaScriptImport<MDXContent>(String(output));
+				return module;
+			}
+
+			const module = await transformMdxField(content);
+
+			const members = await Promise.all(
+				metadata.members.map(async (member) => {
+					const module = await transformMdxField(member.content);
+					const image = await getImageDimensions(member.image);
+
+					return {
+						...member,
+						content: module,
+						image,
+					};
+				}),
+			);
+
+			return {
+				id: item.id,
+				content: module,
+				metadata: {
+					...metadata,
+					members,
+				},
+			};
+		},
+	});
+}
+
+export const teamPage = {
+	de: createTeamPageCollection("de-DE"),
+	en: createTeamPageCollection("en-GB"),
 };
-
-export const teamPage = createCollection({
-	name: "team-page",
-	directory: "./content/de/team-page/",
-	include: ["index.mdx"],
-	read() {
-		return reader.singletons["de:team-page"].readOrThrow({ resolveLinkedFiles: true });
-	},
-	async transform(data, item, context) {
-		const { content, ...metadata } = data;
-
-		async function transformMdxField(content: string) {
-			const input = new VFile({ path: item.absoluteFilePath, value: content });
-			const output = await compile(input, compileOptions);
-			const module = context.createJavaScriptImport<MDXContent>(String(output));
-			return module;
-		}
-
-		const module = await transformMdxField(content);
-
-		const members = await Promise.all(
-			metadata.members.map(async (member) => {
-				const module = await transformMdxField(member.content);
-				const image = await getImageDimensions(member.image);
-
-				return {
-					...member,
-					content: module,
-					image,
-				};
-			}),
-		);
-
-		return {
-			id: item.id,
-			content: module,
-			metadata: {
-				...metadata,
-				members,
-			},
-		};
-	},
-});

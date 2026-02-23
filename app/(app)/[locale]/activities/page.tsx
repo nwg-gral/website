@@ -1,6 +1,6 @@
 import { groupByToMap } from "@acdh-oeaw/lib";
 import type { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import type { ReactNode } from "react";
 
 import { Container } from "@/components/container";
@@ -8,6 +8,7 @@ import { Link } from "@/components/link";
 import { Main } from "@/components/main";
 import { PageTitle } from "@/components/page-title";
 import { createClient } from "@/lib/content/create-client";
+import { getIntlLanguage } from "@/lib/i18n/locales";
 
 export async function generateMetadata(): Promise<Metadata> {
 	const t = await getTranslations("ActivitiesPage");
@@ -20,7 +21,8 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function ActivitiesPage(): Promise<ReactNode> {
-	const client = await createClient();
+	const locale = await getLocale();
+	const client = await createClient(getIntlLanguage(locale));
 
 	const page = await client.singletons.activitiesPage.get();
 
@@ -47,7 +49,8 @@ export default async function ActivitiesPage(): Promise<ReactNode> {
 async function EventsSection(): Promise<ReactNode> {
 	const t = await getTranslations("ActivitiesPage");
 
-	const client = await createClient();
+	const locale = await getLocale();
+	const client = await createClient(getIntlLanguage(locale));
 
 	const events = await client.collections.events.all();
 

@@ -15,6 +15,10 @@ const typographyConfig = {
 		openingQuotes: { double: "\u201E", single: "'" },
 		closingQuotes: { double: "\u201C", single: "'" },
 	},
+	en: {
+		openingQuotes: { double: "\u201E", single: "'" },
+		closingQuotes: { double: "\u201C", single: "'" },
+	},
 };
 
 export function createTypographicQuotesPlugin(language: IntlLanguage) {
