@@ -6,7 +6,7 @@ export const localePrefix = {
 	mode: "always",
 	prefixes: {
 		"de-DE": "/de",
-		// "en-GB": "/en",
+		"en-GB": "/en",
 	},
 } as const satisfies LocalePrefix<typeof locales>;
 
